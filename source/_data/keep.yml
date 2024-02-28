@@ -93,11 +93,11 @@ comment:
   enable: true
   use: disqus  # values: valine | gitalk | twikoo | waline | giscus | artalk | disqus
 
-# Disqus Setting
-disqus:
-  enable: true
-  shortname: quanjun-space
-  count: true
+  # Disqus Setting
+  disqus:
+    enable: true
+    shortname: quanjun-space
+    count: true
 
 rss:
   enable: false   # Option values: true | false
