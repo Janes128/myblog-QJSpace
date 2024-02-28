@@ -1,0 +1,140 @@
+# base_info
+base_info:
+  primary_color: "#669966"
+  title: Quan-Jun Space
+  author: Jimmy Shen
+  avatar: /images/Jimmy.png
+  logo: /images/QJ_Logo.svg
+  favicon: /images/QJ_Icon.svg
+
+# menu
+menu:
+  Home: /                         # 首页
+  Archives: /archives             # 归档
+  # Tags: /tags                   # 标签
+  # Categories: /categories       # 分类
+  # Links: /links                 # 链接
+  About: /about
+  # Photos: /photos               # 相册
+  # ...
+
+first_screen:
+  enable: true        # Option values: true | false
+  background_img: /images/bg.png
+  background_img_dark: /images/night-bg.png
+  description: Never lose your value, have a life, and live it with your pride. # ||: enter lines
+  # https://www.onelinerquotes.com/story/never-lose-your-value-story-with-a-perfect-example
+  hitokoto: false      # Option values: true | false
+
+  social_contact:
+    enable: true      # Option values: true | false
+    links:
+      github: https://github.com/Janes128
+      twitter:         # Twitter
+      facebook:        # Facebook
+      email: jimmy851208@gmail.com
+
+scroll:
+  progress_bar: true
+  percent: false
+  hide_header: false
+
+home:
+  category: true  # Option values: true | false
+  tag: true       # Option values: true | false
+  announcement:   # 公告的功能
+
+post:
+  author_badge:
+    enable: false         # Option values: true | false
+    level_badge: false    # Option values: true | false
+    custom_badge: ["One", "Two", "Three"]
+
+  word_count:
+    wordcount: false     # Word count, one article. Option values: true | false
+    min2read: true      # Time to read, one article. Option values: true | false
+
+  datetime_format: "YYYY-MM-DD HH:mm:ss"  # Datetime format. e.g. "YYYY-MM-DD HH:mm:ss"
+
+  copyright_info: true  # Option values: true | false
+
+  share: false           # Option values: true | false
+
+  reward:
+    enable: true        # Option values: true | false
+    img_link: /images/givemeacoffee.png           # Image link for the payment QR code
+    text: 請我喝一杯讚的！               # Custom reward text, Can be null
+
+code_block:
+  tools:
+    enable: true             # Option values: true | false
+    style: default            # Option values: default | mac
+  highlight_theme: obsidian   # Option values: default | obsidian
+
+toc:
+  enable: true      # Option values: true | false
+  number: false      # Option values: true | false
+  expand_all: false  # Option values: true | false
+  init_open: true    # Option values: true | false
+  layout: left      # Option values: left | right
+
+website_count:
+  busuanzi_count:
+    enable: true     # Option values: true | false
+    site_uv: false    # Option values: true | false
+    site_pv: false    # Option values: true | false
+    page_pv: true    # Option values: true | false
+
+local_search:
+  enable: true      # Option values: true | false
+  preload: true     # Preload the search data when the page loads
+
+comment:
+  enable: true
+  use: disqus  # values: valine | gitalk | twikoo | waline | giscus | artalk | disqus
+
+# Disqus Setting
+disqus:
+  enable: true
+  shortname: quanjun-space
+  count: true
+
+rss:
+  enable: false   # Option values: true | false
+
+lazyload:
+  enable: true  # Option values: true | false
+
+cdn:
+  enable: false       # Option values: true | false
+  provider: cdnjs     # Option values: cdnjs | jsdelivr | unpkg
+
+pjax:
+  enable: false   # Option values: true | false
+
+footer:
+  since: 2023           # The starting year of your website, Can be null
+  word_count: false     # Option values: true | false
+
+  icp:
+    enable: false                    # Option values: true | false
+    record_code:                     # ICP record code of your website
+    url: 
+
+  site_deploy:
+    enable: true        # Option values: true | false
+    provider: github     # Option values: github | vercel | netlify | gitee | aliyun | tencent_cloud | upyun
+    url:                 # Your deployment provider url, Can be null
+
+  shields_style:
+    enable: false        # Option values: true | false
+    custom:
+      - link_url:        # Your link url, Can be null
+        img_url:         # Shields image url
+
+inject:
+  enable: false  # Option values: true | false
+  css:
+    -
+  js:
+    -
