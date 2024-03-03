@@ -2,6 +2,7 @@
 title: Hexo at MacOS架站心路歷程：Part I - 環境安裝
 date: 2024-02-29 22:22:48
 tags: hexo
+categories: Software
 ---
 
 # Hexo at MacOS架站心路歷程：Part I - 環境安裝
