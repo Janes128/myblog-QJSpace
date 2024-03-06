@@ -11,7 +11,7 @@ base_info:
 menu:
   Home: /                         # 首页
   Archives: /archives             # 归档
-  # Tags: /tags                   # 标签
+  Tags: /tags                   # 标签
   # Categories: /categories       # 分类
   # Links: /links                 # 链接
   About: /about
@@ -123,7 +123,7 @@ footer:
 
   site_deploy:
     enable: true        # Option values: true | false
-    provider: github     # Option values: github | vercel | netlify | gitee | aliyun | tencent_cloud | upyun
+    provider: netlify    # Option values: github | vercel | netlify | gitee | aliyun | tencent_cloud | upyun
     url:                 # Your deployment provider url, Can be null
 
   shields_style:

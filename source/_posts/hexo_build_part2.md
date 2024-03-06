@@ -29,11 +29,10 @@ hexo init <your_blog_name>
 ## Step 2 - 配置Hexo
 
 > #### ！溫馨提醒！
+> - 可以同時參照官方參考：[https://hexo.io/zh-cn/docs/configuration](https://hexo.io/zh-cn/docs/configuration)
+> - 要稍微理解YAML的語法：冒號後面，需要一個**空格**才能繼續寫下去
 
-- > 可以同時參照官方參考：[https://hexo.io/zh-cn/docs/configuration](https://hexo.io/zh-cn/docs/configuration)
-- > 要稍微理解YAML的語法：冒號後面，需要一個**空格**才能繼續寫下去
-
-> 這裡建議，直接參考官方的配置說明：[https://hexo.io/zh-cn/docs/configuration](https://hexo.io/zh-cn/docs/configuration)
+- 這裡建議，直接參考官方的配置說明：[https://hexo.io/zh-cn/docs/configuration](https://hexo.io/zh-cn/docs/configuration)
 
 - 如同官方所說，大部分的網頁配置，都是在`_config.yml` 或 [代替配置文件](https://hexo.io/zh-cn/docs/configuration#%E4%BD%BF%E7%94%A8%E4%BB%A3%E6%9B%BF%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6) 中調整修改
 
@@ -41,33 +40,33 @@ hexo init <your_blog_name>
 
 > 以下分享一些常用的Hexo指令，便於操作
 
-> ### hexo init [folder]
+### hexo init [folder]
 
 - Goal: 初始化Hexo 的相關配置
 - Parameters:
    - folder: 表是要初始化的文件資料夾地址
    - 若要直接在當前資料夾初始化，直接輸入`hexo init .`
 
-> ### hexo server
+### hexo server
 
 - Goal: 可以在本地端進行網站的預覽，同時也是一種Debug方式
 - 默認的網址連結為`http://localhost:8080/` ，可能會有所不同，像我就是4000這個port口
 - 如果說想要換port地址，可以在終端器輸入`hexo s -p <new_port>`
 
-> ### hexo generate
+### hexo generate
 
 - Goal: 用於生成靜態文件，生成後網頁相關內容會放在根目錄下面的`public` 文件夾中
 
-> ### hexo deploy
+### hexo deploy
 
 - Goal: 用來部署網站內容，使用這個命令會將生成好的頁面（根目錄下面的`public` 文件夾的內容）部署到指定的地方
 - 這個指定的地方，可以在`_config.yml` 進行定義
 
-> ### hexo clean
+### hexo clean
 
 - Goal: 用於清空`public`文件夾內容
 
-> ### hexo version
+### hexo version
 
 - Goal: 用於輸出目前hexo版本號
 
