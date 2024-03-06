@@ -81,8 +81,8 @@ toc:
 website_count:
   busuanzi_count:
     enable: true     # Option values: true | false
-    site_uv: false    # Option values: true | false
-    site_pv: false    # Option values: true | false
+    site_uv: true    # Option values: true | false
+    site_pv: true    # Option values: true | false
     page_pv: true    # Option values: true | false
 
 local_search:
