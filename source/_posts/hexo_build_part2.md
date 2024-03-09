@@ -6,8 +6,6 @@ tags: hexo
 categories: Software
 ---
 
-> Tags: [macOS](craftdocs://open?blockId=E2B93344-B0F1-4E5A-94AE-BB20FA32A655&spaceId=2e84309a-ca7c-d40a-c79f-c06a3542c138)
-
 > 上一篇經歷Hexo的環境安裝，現在就讓我們進行基礎的Hexo配置。
 
 ## Step 1 - 初始化建立Hexo服務
