@@ -5,8 +5,6 @@ tags: hexo
 categories: Software
 ---
 
-# Hexo at MacOS架站心路歷程：Part I - 環境安裝
-
 ## 主旨與動機
 
 - 想在繁忙的工作生活時間中，找到一個沈靜自己、消化自己收穫的小天地

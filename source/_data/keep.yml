@@ -78,6 +78,7 @@ toc:
   init_open: true    # Option values: true | false
   layout: left      # Option values: left | right
 
+# busuanzi's link is deprecated
 website_count:
   busuanzi_count:
     enable: true     # Option values: true | false
