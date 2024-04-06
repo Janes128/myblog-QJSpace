@@ -1,5 +1,5 @@
 ---
-title: Arduino: Start Arduino in MacOS
+title: Arduino - Start Arduino in MacOS
 date: 2024-04-06 23:50:15
 updated:
 tags: arduino
