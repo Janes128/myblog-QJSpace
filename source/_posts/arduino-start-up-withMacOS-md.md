@@ -46,11 +46,11 @@ Compilation error: fork/exec /Users/user/Library/Arduino15/packages/arduino/tool
 ## Test with Arduino
 
 > Requirement Device:
-
-1. > Arduino device, e.g. Arduino UNO R3 board
-2. > Cable: type A to type B USB
-3. > USB hub (All in one to Type C USB)
-4. > MacBook, e.g. MacBook Air M1
+>
+> 1. Arduino device, e.g. Arduino UNO R3 board
+> 2. Cable: type A to type B USB
+> 3. USB hub (All in one to Type C USB)
+> 4. MacBook, e.g. MacBook Air M1
 
 Test Steps:
 
