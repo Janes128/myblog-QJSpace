@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Software, LiteStyle, Reading">
+    <meta name="description" content="I am a software engineer. This websie is my work and life records.">
+    <meta name="author" content="Jimmy Shen">
+    
+    <title>
+        
+            Hexo at MacOS架站心路歷程：Part III - Hexo部署架設 - Netlify + Github 篇 |
+        
+        Quan-Jun Space
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/QJ_Icon.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"janes128.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#669966","title":"Quan-Jun Space","author":"Jimmy Shen","avatar":"/images/Jimmy.png","logo":"/images/QJ_Logo.svg","favicon":"/images/QJ_Icon.svg"},"menu":{"Archives":"/archives","Tags":"/tags","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.png","background_img_dark":"/images/night-bg.png","description":"Never lose your value, have a life, and live it with your pride.","hitokoto":false,"social_contact":{"enable":true,"links":{"github":"https://github.com/Janes128","twitter":null,"facebook":null,"email":"jimmy851208@gmail.com"}}},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":false},"home":{"category":true,"tag":true,"announcement":null},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":true,"share":false,"reward":{"enable":true,"img_link":"/images/givemeacoffee.png","text":"請我喝一杯讚的！"}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"disqus","disqus":{"enable":true,"shortname":"quanjun-space","count":true}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2023,"word_count":false,"icp":{"enable":false,"record_code":null,"url":null},"site_deploy":{"enable":true,"provider":"netlify","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","version":"4.0.7"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/QJ_Logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Quan-Jun Space
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Hexo at MacOS架站心路歷程：Part III - Hexo部署架設 - Netlify + Github 篇
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/Jimmy.png">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Jimmy Shen</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2024-03-09 23:21:27</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Sat Mar 09 2024 23:26:40 GMT+0800">2024-03-09 23:26:40</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Software/">Software</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/hexo/">hexo</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>3 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <h2 id="動機與目的"><a href="#動機與目的" class="headerlink" title="動機與目的"></a>動機與目的</h2><ul>
+<li>用了Github Pages部署方式後，發現會有些不方便的地方，比如更新文章時，需要在本地端先進行編譯建置（hexo generate），部署到public文件夾後，再手動上傳資料夾中內容至github更新網頁。</li>
+<li>上網研究，發現<strong>Netlify</strong>這項好用工具，可以更快速方便的更新自己的網站，做到<strong>持續性部署（CD）</strong></li>
+<li>接下來，就讓我們開始吧！</li>
+</ul>
+<h2 id="使用Netlify＋Github進行網站部署"><a href="#使用Netlify＋Github進行網站部署" class="headerlink" title="使用Netlify＋Github進行網站部署"></a>使用Netlify＋Github進行網站部署</h2><blockquote>
+<p>Netlify 是一家遠端優先的雲端運算公司，提供一個開發平台，其中包括針對 Web 應用程式和動態網站的建置、部署和無伺服器後端服務。(Wiki)</p>
+</blockquote>
+<ul>
+<li>操作原理<ul>
+<li>將Hexo 部落格相關資料，丟到Github建立一個repo</li>
+<li>使用Netlify來建立無伺服器的後端部署服務，並連結至上述repo</li>
+<li>Netlify將會自動偵測Github repo的更新變動，自動進行部署</li>
+</ul>
+</li>
+</ul>
+<h3 id="Step-1-將Hexo-Project上傳github進行遠端管理"><a href="#Step-1-將Hexo-Project上傳github進行遠端管理" class="headerlink" title="Step 1: 將Hexo Project上傳github進行遠端管理"></a>Step 1: 將Hexo Project上傳github進行遠端管理</h3><ul>
+<li>在部落格的根目錄中，初始git服務，並將我的hexo網頁檔案push上github repo</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br><span class="line">$ git add .</span><br><span class="line">$ git commit -m <span class="string">&quot;:tada: Init repo&quot;</span></span><br><span class="line">$ git remote add origin git@github.com:&lt;your-github-name&gt;/&lt;hexo-project-name&gt;.git</span><br><span class="line">$ git push -u origin master <span class="comment">#here need PAT to login your github</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<h4 id="Debug-git-problem-with-‘critical-error-身份驗證失敗’"><a href="#Debug-git-problem-with-‘critical-error-身份驗證失敗’" class="headerlink" title="Debug - git problem with ‘critical error: 身份驗證失敗’"></a>Debug - git problem with ‘critical error: 身份驗證失敗’</h4></blockquote>
+<blockquote>
+<p>請參考這篇：<a class="link"   target="_blank" rel="noopener" href="https://stackoverflow.com/questions/68775869/message-support-for-password-authentication-was-removed" >https://stackoverflow.com/questions/68775869/message-support-for-password-authentication-was-removed<i class="fas fa-external-link-alt"></i></a></p>
+</blockquote>
+<blockquote>
+<ul>
+<li>2021-08-13以後，github不再支援直接輸入密碼的方式，來操作git；而是使用**PAT (Personal Access Token)**作為替代。</li>
+<li>長話短說：請至github頁面申請一組PAT，使用PAT來取代密碼即可。</li>
+</ul>
+</blockquote>
+<h3 id="Step-2-辦理與部署Netlify"><a href="#Step-2-辦理與部署Netlify" class="headerlink" title="Step 2: 辦理與部署Netlify"></a>Step 2: 辦理與部署Netlify</h3><blockquote>
+<p>官網：<a class="link"   target="_blank" rel="noopener" href="https://www.netlify.com/" >https://www.netlify.com/<i class="fas fa-external-link-alt"></i></a></p>
+</blockquote>
+<ul>
+<li>登入官網後，可以直接使用github帳號做登陸</li>
+<li>填寫完相關資訊，請選擇使用github連動您的hexo repo(剛剛上傳的那個)</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://res.craft.do/user/full/2e84309a-ca7c-d40a-c79f-c06a3542c138/doc/2FD6B68B-6A84-4234-80CE-E0CBD0D7BF82/EBC2E25C-0475-430C-9B7E-184BA3EA2870_2/fe0JMSwyNbBg6wARRtS33ooYrPHvzrNqpdRlD4Vjkogz/Image.png"
+                        alt="Image.png"
+                 ></p>
+<ul>
+<li>點選剛剛連動的repo，再點選Edit build settings</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://res.craft.do/user/full/2e84309a-ca7c-d40a-c79f-c06a3542c138/doc/2FD6B68B-6A84-4234-80CE-E0CBD0D7BF82/853FD916-ADE3-4923-89A8-2FE8E386C11D_2/hhux99NeYzpKALvcm9nBGnSoc2NkraodIn9HQsVlfvMz/Image.png"
+                        alt="Image.png"
+                 ></p>
+<ul>
+<li>修改如下圖所示(其實使用系統預設值即可)</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://res.craft.do/user/full/2e84309a-ca7c-d40a-c79f-c06a3542c138/doc/46342A65-FCCC-4ABE-A88C-54FA91036167/20A9448C-164D-42C8-A10A-005B69E0DD0A_2/nIwQiXx6rLUFQZzc27MQenuWSyxQiNn0jyF5Ltyix0kz/Image.png"
+                        alt="Image.png"
+                 ></p>
+<ul>
+<li>修改後，即可按下部署「Deploy name to Netlify」並等待發出；成功的話，將會出現下面的資訊囉！</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://res.craft.do/user/full/2e84309a-ca7c-d40a-c79f-c06a3542c138/doc/46342A65-FCCC-4ABE-A88C-54FA91036167/F0266889-0F9B-424A-8F05-253C80571EE8_2/yLZc0NJzxfOLXY2qnNyBChBAdgUKYJN2D9hIzEc0yCEz/Image.png"
+                        alt="Image.png"
+                 ></p>
+<ul>
+<li>此時，就可以接著後續的設定，如：客製化網誌ＵＲＬ，或是內嵌入其他插件，這邊不做贅述。</li>
+<li>如此一來，就完成網站的部署囉！</li>
+</ul>
+<hr>
+<h2 id="Debug經驗分享：Netlify-部署Hexo-Github-初始化（initializing）-失敗"><a href="#Debug經驗分享：Netlify-部署Hexo-Github-初始化（initializing）-失敗" class="headerlink" title="Debug經驗分享：Netlify 部署Hexo Github 初始化（initializing） 失敗"></a>Debug經驗分享：Netlify 部署Hexo Github 初始化（initializing） 失敗</h2><ul>
+<li>問題發現：<ul>
+<li>建制初期，進行Hexo部落格更新時，推到Github上，理論上Netlify會自動幫我編譯與部署，但當netlify在進行初始化(initializing)動作，會跳出<strong>Failed</strong>的警告字樣，如下圖：</li>
+</ul>
+</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://res.craft.do/user/full/2e84309a-ca7c-d40a-c79f-c06a3542c138/doc/46342A65-FCCC-4ABE-A88C-54FA91036167/D0688305-FD1E-430A-ABED-133DD3C8E5FF_2/f8M3qyROpcUFeVybxfwylg6Tbpq9pIfbI9qTSO8lSmkz/Image.png"
+                        alt="Image.png"
+                 ></p>
+<ul>
+<li>分析觀察：<ul>
+<li>觀察第八與第九行，可以發現，問題是出在「.deploy_git」這個檔案。發現這個檔案應該是Netlify在部署時會自動產生出的文件，git submodule 無法追蹤或更新到這份模組，導致錯誤。</li>
+</ul>
+</li>
+<li>解決方法：<ul>
+<li>參考以下連結，先將「.deploy_git」這個檔案給刪掉</li>
+</ul>
+</li>
+</ul>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/lemqs0123/article/details/110429731" ><i class="fas fa-external-link-alt"></i></a></p>
+<ul>
+<li><p>刪除指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">rm</span> --cache <span class="string">&#x27;.deploy_git&#x27;</span>    <span class="comment"># system response: rm &#x27;.deploy_git&#x27;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下圖為檢查與刪除的過程圖：</p>
+</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://res.craft.do/user/full/2e84309a-ca7c-d40a-c79f-c06a3542c138/doc/46342A65-FCCC-4ABE-A88C-54FA91036167/92A29C99-9794-49BA-A79D-C64090A53662_2/fTUgJOlycKrHdenqq0b8y7qnYImjkE7WJvSMp2G1ipQz/Image.png"
+                        alt="Image.png"
+                 ></p>
+<ul>
+<li>並且，記得將部署檔案”.deploy_git”加入到”.gitignore”檔案裡面（若無此檔案，要自己創建），以免再次把”.deploy_git”更新上去。<ul>
+<li>可以使用指令<code>ls -la</code> 看看有沒有這個檔案，若沒有，可以用指令<code>touch .gitignore</code> 來創造，再使用文字編輯器將檔案<code>.gitignore</code> 加上去即可</li>
+</ul>
+</li>
+<li>編輯結束後，再將hexo的repo推上去github，讓netlify自動部署更新，就可以成功囉！</li>
+</ul>
+<hr>
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><ul>
+<li>將部署工具換成netlify之後，有種如釋負重的感覺，之前繁瑣的部署流程，可以直接推上github後就結束了，他將會幫我自動部署到網路上，輕鬆方便許多！</li>
+<li>遇到Bug時，一時間也覺得不知所措，但真的仔細深入了解其原因後，才發現原來解法這麼單純，但這也是玩資訊工程時的醍醐味吧！</li>
+</ul>
+
+                </div>
+
+                
+                        
+<div class="post-copyright-info-container border-box">
+    <div class="copyright-info-content border-box">
+        <div class="copyright-info-top border-box">
+            <div class="copyright-post-title border-box text-ellipsis">
+                Hexo at MacOS架站心路歷程：Part III - Hexo部署架設 - Netlify + Github 篇
+            </div>
+
+            <div class="copyright-post-link border-box text-ellipsis">
+                2024/03/09/202403-hexo/hexo_build_part3-2/
+            </div>
+        </div>
+
+        <div class="copyright-info-bottom border-box">
+            <div class="copyright-post-author bottom-item">
+                <div class="type">
+                    Author
+                </div>
+                <div class="content">Jimmy Shen</div>
+            </div>
+
+            <div class="post-time bottom-item">
+                <div class="type">
+                    Published
+                </div>
+                <div class="content">2024-03-09 23:21</div>
+            </div>
+
+
+            <div class="post-license bottom-item">
+                <div class="type">
+                    License
+                </div>
+                <div class="content tooltip" data-tooltip-content="CC BY-NC-SA 4.0">
+                    <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed">
+                        <i class="fa-brands fa-creative-commons"></i>
+                        <i class="fa-brands fa-creative-commons-by"></i>
+                        <i class="fa-brands fa-creative-commons-nc"></i>
+                        <i class="fa-brands fa-creative-commons-sa"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <i class="copyright-bg fa-solid fa-copyright"></i>
+    </div>
+    <div class="copy-copyright-info flex-center tooltip" data-tooltip-content="Copy copyright info" data-tooltip-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/hexo/">hexo</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+                    <div class="reward-author-container border-box flex-center">
+    <div class="reward-btn keep-button border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="請我喝一杯讚的！"
+            data-tooltip-img-url="/images/givemeacoffee.png"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -8px;"
+    >
+        <i class="fa-solid fa-hand-holding-heart"></i>
+    </div>
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2024/03/24/cpp-breifly-talk-obj-base/"
+                                   title="Briefly Talk about C++ Class - Object Based"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Briefly Talk about C++ Class - Object Based</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2024/03/09/202403-hexo/hexo_build_part3-1/"
+                                   title="Hexo at MacOS架站心路歷程：Part III - Hexo部署架設 - Github Pages 篇"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Hexo at MacOS架站心路歷程：Part III - Hexo部署架設 - Github Pages 篇</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">Comment plugin failed to load</span>
+    <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="disqus-comments-container">
+        <div id="disqus_thread"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.initDisqus) {
+            window.KeepCommentPlugin.initDisqus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = '//quanjun-space.disqus.com/embed.js'
+              script.setAttribute('data-timestamp', `${Date.now()}`)
+              document.querySelector('.disqus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initDisqus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initDisqus)
+          }
+        </script>
+        <script id="dsq-count-scr" src="//quanjun-space.disqus.com/count.js" async></script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8B%95%E6%A9%9F%E8%88%87%E7%9B%AE%E7%9A%84"><span class="nav-text">動機與目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Netlify%EF%BC%8BGithub%E9%80%B2%E8%A1%8C%E7%B6%B2%E7%AB%99%E9%83%A8%E7%BD%B2"><span class="nav-text">使用Netlify＋Github進行網站部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1-%E5%B0%87Hexo-Project%E4%B8%8A%E5%82%B3github%E9%80%B2%E8%A1%8C%E9%81%A0%E7%AB%AF%E7%AE%A1%E7%90%86"><span class="nav-text">Step 1: 將Hexo Project上傳github進行遠端管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Debug-git-problem-with-%E2%80%98critical-error-%E8%BA%AB%E4%BB%BD%E9%A9%97%E8%AD%89%E5%A4%B1%E6%95%97%E2%80%99"><span class="nav-text">Debug - git problem with ‘critical error: 身份驗證失敗’</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2-%E8%BE%A6%E7%90%86%E8%88%87%E9%83%A8%E7%BD%B2Netlify"><span class="nav-text">Step 2: 辦理與部署Netlify</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Debug%E7%B6%93%E9%A9%97%E5%88%86%E4%BA%AB%EF%BC%9ANetlify-%E9%83%A8%E7%BD%B2Hexo-Github-%E5%88%9D%E5%A7%8B%E5%8C%96%EF%BC%88initializing%EF%BC%89-%E5%A4%B1%E6%95%97"><span class="nav-text">Debug經驗分享：Netlify 部署Hexo Github 初始化（initializing） 失敗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-text">小結</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2023</span>&nbsp;-&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Jimmy Shen</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+                
+                <div class="deploy-info info-item default">
+                    
+                        This site is deployed on <span class="tooltip" data-tooltip-content="Netlify"><img src="/images/deploy-provider/netlify.png"></span>
+                    
+                </div>
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+                <span class="count-box border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-box border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8B%95%E6%A9%9F%E8%88%87%E7%9B%AE%E7%9A%84"><span class="nav-text">動機與目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Netlify%EF%BC%8BGithub%E9%80%B2%E8%A1%8C%E7%B6%B2%E7%AB%99%E9%83%A8%E7%BD%B2"><span class="nav-text">使用Netlify＋Github進行網站部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1-%E5%B0%87Hexo-Project%E4%B8%8A%E5%82%B3github%E9%80%B2%E8%A1%8C%E9%81%A0%E7%AB%AF%E7%AE%A1%E7%90%86"><span class="nav-text">Step 1: 將Hexo Project上傳github進行遠端管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Debug-git-problem-with-%E2%80%98critical-error-%E8%BA%AB%E4%BB%BD%E9%A9%97%E8%AD%89%E5%A4%B1%E6%95%97%E2%80%99"><span class="nav-text">Debug - git problem with ‘critical error: 身份驗證失敗’</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2-%E8%BE%A6%E7%90%86%E8%88%87%E9%83%A8%E7%BD%B2Netlify"><span class="nav-text">Step 2: 辦理與部署Netlify</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Debug%E7%B6%93%E9%A9%97%E5%88%86%E4%BA%AB%EF%BC%9ANetlify-%E9%83%A8%E7%BD%B2Hexo-Github-%E5%88%9D%E5%A7%8B%E5%8C%96%EF%BC%88initializing%EF%BC%89-%E5%A4%B1%E6%95%97"><span class="nav-text">Debug經驗分享：Netlify 部署Hexo Github 初始化（initializing） 失敗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-text">小結</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+            
+<script src="/js/post/copyright-info.js"></script>
+
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>

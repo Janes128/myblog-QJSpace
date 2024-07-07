@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Software, LiteStyle, Reading">
+    <meta name="description" content="I am a software engineer. This websie is my work and life records.">
+    <meta name="author" content="Jimmy Shen">
+    
+    <title>
+        
+            DLAI - ChatGPT API [I] - Language Models, the Chat Format and Tokens |
+        
+        Quan-Jun Space
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/QJ_Icon.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"janes128.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#669966","title":"Quan-Jun Space","author":"Jimmy Shen","avatar":"/images/Jimmy.png","logo":"/images/QJ_Logo.svg","favicon":"/images/QJ_Icon.svg"},"menu":{"Archives":"/archives","Tags":"/tags","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.png","background_img_dark":"/images/night-bg.png","description":"Never lose your value, have a life, and live it with your pride.","hitokoto":false,"social_contact":{"enable":true,"links":{"github":"https://github.com/Janes128","twitter":null,"facebook":null,"email":"jimmy851208@gmail.com"}}},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":false},"home":{"category":true,"tag":true,"announcement":null},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":true,"share":false,"reward":{"enable":true,"img_link":"/images/givemeacoffee.png","text":"請我喝一杯讚的！"}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"disqus","disqus":{"enable":true,"shortname":"quanjun-space","count":true}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2023,"word_count":false,"icp":{"enable":false,"record_code":null,"url":null},"site_deploy":{"enable":true,"provider":"netlify","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","version":"4.0.7"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/QJ_Logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Quan-Jun Space
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        DLAI - ChatGPT API [I] - Language Models, the Chat Format and Tokens
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/Jimmy.png">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Jimmy Shen</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2024-04-15 23:32:01</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Mon Apr 15 2024 23:36:02 GMT+0800">2024-04-15 23:36:02</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/software/">software</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/llm-gpt/">llm/gpt</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>6 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <blockquote>
+<p>Link: <a class="link"   target="_blank" rel="noopener" href="https://learn.deeplearning.ai/courses/chatgpt-building-system/lesson/2/language-models%2C-the-chat-format-and-tokens" >DLAI - Building Systems with the ChatGPT API<i class="fas fa-external-link-alt"></i></a></p>
+</blockquote>
+<h1 id="Language-Models-the-Chat-Format-and-Tokens"><a href="#Language-Models-the-Chat-Format-and-Tokens" class="headerlink" title="Language Models, the Chat Format and Tokens"></a>Language Models, the Chat Format and Tokens</h1><ul>
+<li>LLM在互動過程，是一直依據前面的Input X(前面的句子)，來預測下一個字詞Output Y</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://res.craft.do/user/full/2e84309a-ca7c-d40a-c79f-c06a3542c138/doc/3dfed944-4d33-4022-8938-df8b230db6a0/f06b8c53-5281-4692-a3fb-3c7465afb37b"
+                        alt="image.png"
+                 ></p>
+<h2 id="Tokens"><a href="#Tokens" class="headerlink" title="Tokens"></a>Tokens</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Learning][ new][ things][ is][ fun][!]    // [] is one &quot;token&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://res.craft.do/user/full/2e84309a-ca7c-d40a-c79f-c06a3542c138/doc/3dfed944-4d33-4022-8938-df8b230db6a0/01c20d21-4b1d-4736-a006-e5f9df60c510"
+                        alt="image.png"
+                 ></p>
+<h2 id="三大提示詞－System-User-and-Assistant-Message"><a href="#三大提示詞－System-User-and-Assistant-Message" class="headerlink" title="三大提示詞－System, User and Assistant Message"></a>三大提示詞－System, User and Assistant Message</h2><ol>
+<li>System: sets tone&#x2F;behavior of assistant. 領先於User and Assistant的提示，會去定義GPT的回答方式或回答行為<ul>
+<li>System 的提示詞，有多種提示用法：<ul>
+<li>調整回答長度，或者做角色扮演</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Assistant: Chat model &#x2F; LLM response. 亦即ChatGPT的回答，可以先定義前面的提示句，後面讓ChatGPT來完成他</li>
+<li>User: YOU，也就是使用者的prompt，就問他問題</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">messages =  [  </span><br><span class="line">&#123;<span class="string">&#x27;role&#x27;</span>:<span class="string">&#x27;system&#x27;</span>, </span><br><span class="line"> <span class="string">&#x27;content&#x27;</span>:<span class="string">&quot;&quot;&quot;You are an assistant who\</span></span><br><span class="line"><span class="string"> responds in the style of Dr Seuss.&quot;&quot;&quot;</span>&#125;, </span><br><span class="line"><span class="comment"># &#123;</span></span><br><span class="line"><span class="comment">#   &#x27;role&#x27;:&#x27;assistant&#x27;,</span></span><br><span class="line"><span class="comment">#   &#x27;content&#x27;:&quot;&quot;&quot;...&quot;&quot;&quot;</span></span><br><span class="line"><span class="comment"># &#125;,</span></span><br><span class="line">&#123;<span class="string">&#x27;role&#x27;</span>:<span class="string">&#x27;user&#x27;</span>, </span><br><span class="line"> <span class="string">&#x27;content&#x27;</span>:<span class="string">&quot;&quot;&quot;write me a very short poem\</span></span><br><span class="line"><span class="string"> about a happy carrot&quot;&quot;&quot;</span>&#125;,  </span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://res.craft.do/user/full/2e84309a-ca7c-d40a-c79f-c06a3542c138/doc/3dfed944-4d33-4022-8938-df8b230db6a0/5df2ba83-1aae-4809-96c9-49f536f3c336"
+                        alt="image.png"
+                 ></p>
+<h3 id="API-Key"><a href="#API-Key" class="headerlink" title="API Key"></a>API Key</h3><ul>
+<li>There is more secure way to use API Key</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> dotenv <span class="keyword">import</span> load_dotenv, find_dotenv</span><br><span class="line"></span><br><span class="line">_ = load_dotenv(find_dotenv())    <span class="comment"># read local .env file</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> openai</span><br><span class="line"></span><br><span class="line">openai.api_key = os.getenv(<span class="string">&#x27;OPENAP_API_KEY&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Revolutionizing-AI-Application"><a href="#Revolutionizing-AI-Application" class="headerlink" title="Revolutionizing AI Application"></a>Revolutionizing AI Application</h3><p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://res.craft.do/user/full/2e84309a-ca7c-d40a-c79f-c06a3542c138/doc/3dfed944-4d33-4022-8938-df8b230db6a0/42c90de6-ca0b-4045-9e5c-656e1d7c94ff"
+                        alt="image.png"
+                 ></p>
+<p>多虧AI的革新，我們可以快速去使用相關的API，用非常簡短的時間來完成大型語言模型的調教，更快部屬到應用端。</p>
+<h2 id="如何使用API－Call-Methods"><a href="#如何使用API－Call-Methods" class="headerlink" title="如何使用API－Call Methods"></a>如何使用API－Call Methods</h2><h3 id="Function-get-completion"><a href="#Function-get-completion" class="headerlink" title="Function: get_completion"></a>Function: <code>get_completion</code></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">client = openai.OpenAI()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_completion</span>(<span class="params">prompt, model=<span class="string">&quot;gpt-3.5-turbo&quot;</span></span>):</span><br><span class="line">    messages = [&#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: prompt&#125;]</span><br><span class="line">    response = client.chat.completions.create(</span><br><span class="line">        model=model,</span><br><span class="line">        messages=messages,</span><br><span class="line">        temperature=<span class="number">0</span>  <span class="comment"># this is the degree of randomness of the model&#x27;s output </span></span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> response.choices[<span class="number">0</span>].message.content</span><br></pre></td></tr></table></figure>
+
+<h3 id="Function-get-completion-from-messages"><a href="#Function-get-completion-from-messages" class="headerlink" title="Function: get_completion_from_messages"></a>Function: <code>get_completion_from_messages</code></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_completion_and_token_count</span>(<span class="params">messages, </span></span><br><span class="line"><span class="params">                                   model=<span class="string">&quot;gpt-3.5-turbo&quot;</span>, </span></span><br><span class="line"><span class="params">                                   temperature=<span class="number">0</span>, </span></span><br><span class="line"><span class="params">                                   max_tokens=<span class="number">500</span></span>):</span><br><span class="line">    </span><br><span class="line">    response = openai.ChatCompletion.create(</span><br><span class="line">        model=model,</span><br><span class="line">        messages=messages,</span><br><span class="line">        temperature=temperature, </span><br><span class="line">        max_tokens=max_tokens,</span><br><span class="line">    )</span><br><span class="line">    </span><br><span class="line">    content = response.choices[<span class="number">0</span>].message[<span class="string">&quot;content&quot;</span>]</span><br><span class="line">    </span><br><span class="line">    token_dict = &#123;</span><br><span class="line"><span class="string">&#x27;prompt_tokens&#x27;</span>:response[<span class="string">&#x27;usage&#x27;</span>][<span class="string">&#x27;prompt_tokens&#x27;</span>],</span><br><span class="line"><span class="string">&#x27;completion_tokens&#x27;</span>:response[<span class="string">&#x27;usage&#x27;</span>][<span class="string">&#x27;completion_tokens&#x27;</span>],</span><br><span class="line"><span class="string">&#x27;total_tokens&#x27;</span>:response[<span class="string">&#x27;usage&#x27;</span>][<span class="string">&#x27;total_tokens&#x27;</span>],</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> content, token_dict</span><br><span class="line"><span class="comment">##################################################################</span></span><br><span class="line">messages = [</span><br><span class="line">&#123;<span class="string">&#x27;role&#x27;</span>:<span class="string">&#x27;system&#x27;</span>, </span><br><span class="line"> <span class="string">&#x27;content&#x27;</span>:<span class="string">&quot;&quot;&quot;You are an assistant who responds\</span></span><br><span class="line"><span class="string"> in the style of Dr Seuss.&quot;&quot;&quot;</span>&#125;,    </span><br><span class="line">&#123;<span class="string">&#x27;role&#x27;</span>:<span class="string">&#x27;user&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;content&#x27;</span>:<span class="string">&quot;&quot;&quot;write me a very short poem \ </span></span><br><span class="line"><span class="string"> about a happy carrot&quot;&quot;&quot;</span>&#125;,  </span><br><span class="line">] </span><br><span class="line">response, token_dict = get_completion_and_token_count(messages)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="Exercise-星座描述應答"><a href="#Exercise-星座描述應答" class="headerlink" title="Exercise: 星座描述應答"></a>Exercise: 星座描述應答</h1><h3 id="軟體概念呈現"><a href="#軟體概念呈現" class="headerlink" title="軟體概念呈現"></a>軟體概念呈現</h3><ul>
+<li><strong>Motivation &amp; Objective</strong>: 讓不清楚生日對應甚麼星座的人們，方便查詢星座與該星座的相關細節; 讓使用者可以方便查詢且易於顯示</li>
+<li><strong>Input</strong>: 使用者只要輸入 [綽號] 與 [生日日期]</li>
+<li><strong>Output</strong>: 以表格方式顯示：[對應星座] [星座月份日期] [星座性格特質] [優缺點] [愛情觀&#x2F;感情觀]，並以表格的方式呈現</li>
+</ul>
+<h3 id="程式碼實作"><a href="#程式碼實作" class="headerlink" title="程式碼實作"></a>程式碼實作</h3><blockquote>
+<p>環境使用課程中提供的Jupyter note book 進行案例實作</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> openai</span><br><span class="line"><span class="keyword">import</span> tiktoken</span><br><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> display, Markdown, Latex, HTML, JSON</span><br><span class="line"><span class="keyword">from</span> dotenv <span class="keyword">import</span> load_dotenv, find_dotenv</span><br><span class="line">_ = load_dotenv(find_dotenv()) <span class="comment"># read local .env file</span></span><br><span class="line"></span><br><span class="line">openai.api_key  = os.environ[<span class="string">&#x27;OPENAI_API_KEY&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># OpenAI API Function Definition</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_completion_from_messages</span>(<span class="params">messages, </span></span><br><span class="line"><span class="params">                                 model=<span class="string">&quot;gpt-3.5-turbo&quot;</span>, </span></span><br><span class="line"><span class="params">                                 temperature=<span class="number">0</span>, </span></span><br><span class="line"><span class="params">                                 max_tokens=<span class="number">500</span></span>):</span><br><span class="line">    response = openai.ChatCompletion.create(</span><br><span class="line">        model=model,</span><br><span class="line">        messages=messages,</span><br><span class="line">        temperature=temperature, <span class="comment"># this is the degree of randomness of the model&#x27;s output</span></span><br><span class="line">        max_tokens=max_tokens, <span class="comment"># the maximum number of tokens the model can ouptut </span></span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> response.choices[<span class="number">0</span>].message[<span class="string">&quot;content&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Message Definition: System role and User role</span></span><br><span class="line">messages =  [  </span><br><span class="line">&#123;<span class="string">&#x27;role&#x27;</span>:<span class="string">&#x27;system&#x27;</span>, </span><br><span class="line"> <span class="string">&#x27;content&#x27;</span>:<span class="string">&quot;&quot;&quot;You are an assistant who\</span></span><br><span class="line"><span class="string"> responds in the style of an professional astrologer.\</span></span><br><span class="line"><span class="string"> User will give you his/her nickname and their birthday.\</span></span><br><span class="line"><span class="string"> Your goal is reply user that what the star sign they are,\</span></span><br><span class="line"><span class="string"> and response the below items:\</span></span><br><span class="line"><span class="string"> 1. What star sign?\</span></span><br><span class="line"><span class="string"> 2. The date period of the star sign.\</span></span><br><span class="line"><span class="string"> 3. Character traits of the star sign.\</span></span><br><span class="line"><span class="string"> 4. Advantages and Disadvantages of the star sign.\</span></span><br><span class="line"><span class="string"> 5. View of love/view of feelings of the star sign.\</span></span><br><span class="line"><span class="string"> Please response them with a table style in HTML structure.&quot;&quot;&quot;</span>&#125;,    </span><br><span class="line">&#123;<span class="string">&#x27;role&#x27;</span>:<span class="string">&#x27;user&#x27;</span>, </span><br><span class="line"> <span class="string">&#x27;content&#x27;</span>:<span class="string">&quot;&quot;&quot;Nickname: Jimmy, Birthday: eighth, Dec&quot;&quot;&quot;</span>&#125;,  </span><br><span class="line">] </span><br><span class="line"></span><br><span class="line"><span class="comment"># Output</span></span><br><span class="line">response = get_completion_from_messages(messages, temperature=<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(response)</span><br><span class="line">display(HTML(response))</span><br></pre></td></tr></table></figure>
+
+<h3 id="輸出結果"><a href="#輸出結果" class="headerlink" title="輸出結果"></a>輸出結果</h3><h4 id="HTML-Code"><a href="#HTML-Code" class="headerlink" title="HTML Code"></a>HTML Code</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>1. Star Sign:<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>Sagittarius<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>2. Date Period:<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>November 22 - December 21<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>3. Character Traits:<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>Adventurous, independent, optimistic, generous, and philosophical.<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>4. Advantages:<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>Enthusiastic, open-minded, and great sense of humor.<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>Disadvantages:<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>Impatient, tactless, and prone to taking risks.<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>5. View of Love/Feelings:<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>Sagittarians value freedom and honesty in relationships, often seeking excitement and new experiences. They may struggle with commitment but are loyal and passionate partners.<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Output-View"><a href="#Output-View" class="headerlink" title="Output View"></a>Output View</h4><p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://res.craft.do/user/full/2e84309a-ca7c-d40a-c79f-c06a3542c138/doc/3dfed944-4d33-4022-8938-df8b230db6a0/67012c22-61e3-49c0-b82f-166d23a38a21"
+                        alt="image.png"
+                 ></p>
+<hr>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>以上就是這次的課程筆記。按照課程步驟，在一次體會到提示工程的重要性，良好並完整的提示，對LLM模型的回答而言是很有幫助的。未來，有機會建置屬於自己的API時，<code>system role</code> 的提示詞也要多用點心來撰寫。</p>
+<p>另外，我自己有直接使用 OpenAI API 直接在本地端進行實作，測試過程中發現：使用本地端API沒有免費的使用權限(需要$$)；有鑑於現階段尚無需求，那就先蹭一下課程的API吧~</p>
+
+                </div>
+
+                
+                        
+<div class="post-copyright-info-container border-box">
+    <div class="copyright-info-content border-box">
+        <div class="copyright-info-top border-box">
+            <div class="copyright-post-title border-box text-ellipsis">
+                DLAI - ChatGPT API [I] - Language Models, the Chat Format and Tokens
+            </div>
+
+            <div class="copyright-post-link border-box text-ellipsis">
+                2024/04/15/dlai-chatgpt-api-course-1-md/
+            </div>
+        </div>
+
+        <div class="copyright-info-bottom border-box">
+            <div class="copyright-post-author bottom-item">
+                <div class="type">
+                    Author
+                </div>
+                <div class="content">Jimmy Shen</div>
+            </div>
+
+            <div class="post-time bottom-item">
+                <div class="type">
+                    Published
+                </div>
+                <div class="content">2024-04-15 23:32</div>
+            </div>
+
+
+            <div class="post-license bottom-item">
+                <div class="type">
+                    License
+                </div>
+                <div class="content tooltip" data-tooltip-content="CC BY-NC-SA 4.0">
+                    <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed">
+                        <i class="fa-brands fa-creative-commons"></i>
+                        <i class="fa-brands fa-creative-commons-by"></i>
+                        <i class="fa-brands fa-creative-commons-nc"></i>
+                        <i class="fa-brands fa-creative-commons-sa"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <i class="copyright-bg fa-solid fa-copyright"></i>
+    </div>
+    <div class="copy-copyright-info flex-center tooltip" data-tooltip-content="Copy copyright info" data-tooltip-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/llm-gpt/">llm/gpt</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+                    <div class="reward-author-container border-box flex-center">
+    <div class="reward-btn keep-button border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="請我喝一杯讚的！"
+            data-tooltip-img-url="/images/givemeacoffee.png"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -8px;"
+    >
+        <i class="fa-solid fa-hand-holding-heart"></i>
+    </div>
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2024/04/06/arduino-start-up-withMacOS-md/"
+                                   title="Arduino - Start Arduino in MacOS"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Arduino - Start Arduino in MacOS</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">Comment plugin failed to load</span>
+    <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="disqus-comments-container">
+        <div id="disqus_thread"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.initDisqus) {
+            window.KeepCommentPlugin.initDisqus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = '//quanjun-space.disqus.com/embed.js'
+              script.setAttribute('data-timestamp', `${Date.now()}`)
+              document.querySelector('.disqus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initDisqus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initDisqus)
+          }
+        </script>
+        <script id="dsq-count-scr" src="//quanjun-space.disqus.com/count.js" async></script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Language-Models-the-Chat-Format-and-Tokens"><span class="nav-text">Language Models, the Chat Format and Tokens</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tokens"><span class="nav-text">Tokens</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E5%A4%A7%E6%8F%90%E7%A4%BA%E8%A9%9E%EF%BC%8DSystem-User-and-Assistant-Message"><span class="nav-text">三大提示詞－System, User and Assistant Message</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#API-Key"><span class="nav-text">API Key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Revolutionizing-AI-Application"><span class="nav-text">Revolutionizing AI Application</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8API%EF%BC%8DCall-Methods"><span class="nav-text">如何使用API－Call Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-get-completion"><span class="nav-text">Function: get_completion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-get-completion-from-messages"><span class="nav-text">Function: get_completion_from_messages</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exercise-%E6%98%9F%E5%BA%A7%E6%8F%8F%E8%BF%B0%E6%87%89%E7%AD%94"><span class="nav-text">Exercise: 星座描述應答</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BB%9F%E9%AB%94%E6%A6%82%E5%BF%B5%E5%91%88%E7%8F%BE"><span class="nav-text">軟體概念呈現</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E7%A2%BC%E5%AF%A6%E4%BD%9C"><span class="nav-text">程式碼實作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BC%B8%E5%87%BA%E7%B5%90%E6%9E%9C"><span class="nav-text">輸出結果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML-Code"><span class="nav-text">HTML Code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output-View"><span class="nav-text">Output View</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-text">Conclusion</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2023</span>&nbsp;-&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Jimmy Shen</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+                
+                <div class="deploy-info info-item default">
+                    
+                        This site is deployed on <span class="tooltip" data-tooltip-content="Netlify"><img src="/images/deploy-provider/netlify.png"></span>
+                    
+                </div>
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+                <span class="count-box border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-box border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Language-Models-the-Chat-Format-and-Tokens"><span class="nav-text">Language Models, the Chat Format and Tokens</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tokens"><span class="nav-text">Tokens</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E5%A4%A7%E6%8F%90%E7%A4%BA%E8%A9%9E%EF%BC%8DSystem-User-and-Assistant-Message"><span class="nav-text">三大提示詞－System, User and Assistant Message</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#API-Key"><span class="nav-text">API Key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Revolutionizing-AI-Application"><span class="nav-text">Revolutionizing AI Application</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8API%EF%BC%8DCall-Methods"><span class="nav-text">如何使用API－Call Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-get-completion"><span class="nav-text">Function: get_completion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-get-completion-from-messages"><span class="nav-text">Function: get_completion_from_messages</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exercise-%E6%98%9F%E5%BA%A7%E6%8F%8F%E8%BF%B0%E6%87%89%E7%AD%94"><span class="nav-text">Exercise: 星座描述應答</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BB%9F%E9%AB%94%E6%A6%82%E5%BF%B5%E5%91%88%E7%8F%BE"><span class="nav-text">軟體概念呈現</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BC%8F%E7%A2%BC%E5%AF%A6%E4%BD%9C"><span class="nav-text">程式碼實作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BC%B8%E5%87%BA%E7%B5%90%E6%9E%9C"><span class="nav-text">輸出結果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML-Code"><span class="nav-text">HTML Code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output-View"><span class="nav-text">Output View</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-text">Conclusion</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+            
+<script src="/js/post/copyright-info.js"></script>
+
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>

@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Software, LiteStyle, Reading">
+    <meta name="description" content="I am a software engineer. This websie is my work and life records.">
+    <meta name="author" content="Jimmy Shen">
+    
+    <title>
+        
+            Briefly Talk about C++ Class - Object Based |
+        
+        Quan-Jun Space
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/QJ_Icon.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"janes128.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#669966","title":"Quan-Jun Space","author":"Jimmy Shen","avatar":"/images/Jimmy.png","logo":"/images/QJ_Logo.svg","favicon":"/images/QJ_Icon.svg"},"menu":{"Archives":"/archives","Tags":"/tags","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.png","background_img_dark":"/images/night-bg.png","description":"Never lose your value, have a life, and live it with your pride.","hitokoto":false,"social_contact":{"enable":true,"links":{"github":"https://github.com/Janes128","twitter":null,"facebook":null,"email":"jimmy851208@gmail.com"}}},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":false},"home":{"category":true,"tag":true,"announcement":null},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":true,"share":false,"reward":{"enable":true,"img_link":"/images/givemeacoffee.png","text":"請我喝一杯讚的！"}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"disqus","disqus":{"enable":true,"shortname":"quanjun-space","count":true}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2023,"word_count":false,"icp":{"enable":false,"record_code":null,"url":null},"site_deploy":{"enable":true,"provider":"netlify","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","version":"4.0.7"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/QJ_Logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Quan-Jun Space
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Briefly Talk about C++ Class - Object Based
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/Jimmy.png">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Jimmy Shen</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2024-03-24 23:46:00</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Sun Mar 24 2024 23:48:30 GMT+0800">2024-03-24 23:48:30</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Software/">Software</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/c/">c++</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>11 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <blockquote>
+<p>本篇文章會簡單介紹，關於C++ Class類別的簡單概念與使用方法，說明其特色，讓讀者對C++ Class有初步的認識。</p>
+</blockquote>
+<h2 id="What-is-C-Class"><a href="#What-is-C-Class" class="headerlink" title="What is C++ Class"></a>What is C++ Class</h2><ul>
+<li>A class in C++ is a <strong>user-defined</strong> type or data structure declared with keyword class that has <strong>data and functions</strong>. (from Wiki)</li>
+<li>C++ Class 我的體驗上，可以做好封裝、程式碼的區隔，在與人協作上會有很好的效果</li>
+<li>我們要如何實作C++的類別呢？我們分為兩個面向來探討<ul>
+<li><em>Object Based</em>: What kind of Class. How to build a Class. 會針對單一個Class，討論如何建構或規劃一個類別中的成員（member）</li>
+<li><em>Object Oriented</em>: Relationship of multiple Classes. 會討論到<strong>物件導向</strong>的概念，著重於多個類別的交互作用關係</li>
+</ul>
+</li>
+<li>本篇文章，會針對 <em>Object Based 來去做介紹喔！（有機會在討論另一個）</em></li>
+</ul>
+<h2 id="How-to-Build-a-Class-Header-File"><a href="#How-to-Build-a-Class-Header-File" class="headerlink" title="How to Build a Class - Header File"></a>How to Build a Class - Header File</h2><ul>
+<li>對於C++ Class，主要會有兩個相同名稱，但副檔名不同的檔案，一個是header file(.h)，另一個為source file(.cpp)<ul>
+<li><em>header file</em>: 作為類別成員宣告（declaration）之用，定義某個成員的原型(prototype)</li>
+<li><em>source file</em>: 作為前述類別成員的定義(definition)，在header定義的成員會被連結到這裡來，查看並實作出對應的程式</li>
+<li>但詳細的定義，會關乎C++的編譯行為，稍微複雜，有興趣的朋友們可以再做研究～</li>
+</ul>
+</li>
+<li>以下就為各位介紹，Header File的各項成員：</li>
+</ul>
+<h3 id="Header-File-標頭檔"><a href="#Header-File-標頭檔" class="headerlink" title="Header File 標頭檔"></a>Header File 標頭檔</h3><ul>
+<li>通常，標頭檔的副檔名，都會是 “<code>.h</code>“ (header files for own)居多<ul>
+<li><code>#include&lt;&gt;</code>and <code>#include&quot;&quot;</code><ul>
+<li><code>&lt;&gt;</code>: 用於編譯器定義之資料庫或C++標準資料庫，會優先到系統路徑做尋找</li>
+<li><code>&quot;&quot;</code>:  用於自定義的標頭檔，或在同一層（或同個專案資料夾）中的資料庫或標頭檔</li>
+<li>可以參考<a class="link"   target="_blank" rel="noopener" href="https://stackoverflow.com/questions/21593/what-is-the-difference-between-include-filename-and-include-filename" >這個<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+</li>
+<li><strong>Header Guard</strong><ul>
+<li>表示如下，目的是為了保護宣告名稱的“獨特性”，要<strong>防止多重載入</strong>的狀況發生</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* complex.h */</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> COMPLEX_ <span class="comment">/*如果之前都沒有定義COMPLEX_的話，進入以下程式碼區域；否則跳出*/</span> </span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> COMPLEX_</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// The contexts we write</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Class-Members-Declaration-類別成員變數、函數定義"><a href="#Class-Members-Declaration-類別成員變數、函數定義" class="headerlink" title="Class Members Declaration 類別成員變數、函數定義"></a>Class Members Declaration 類別成員變數、函數定義</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Header file: complex.h */</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> COMPLEX_    <span class="comment">// Header guard</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> COMPLEX_</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span>    <span class="comment">// Include other header</span></span></span><br><span class="line">    </span><br><span class="line"><span class="comment">////////////    </span></span><br><span class="line"><span class="comment">/// class head</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Complex</span>         <span class="comment">// 1. 類－聲明: class declarations</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">/// class body</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Complex</span> (<span class="type">double</span> r = <span class="number">0</span>, <span class="type">double</span> i = <span class="number">0</span>)</span><br><span class="line">        : <span class="built_in">re</span> (r), <span class="built_in">im</span> (i)</span><br><span class="line">        &#123; &#125;</span><br><span class="line">    Complex&amp; <span class="keyword">operator</span> += (<span class="type">const</span> Complex&amp;); <span class="comment">// 定義放在body之外做定義</span></span><br><span class="line">    <span class="function"><span class="type">double</span> <span class="title">real</span> <span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> re; &#125;    <span class="comment">// 有些函數可以在此直接定義</span></span><br><span class="line">    <span class="function"><span class="type">double</span> <span class="title">imag</span> <span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> im; &#125;    <span class="comment">// 這種定義方式叫做內聯(inline)，優點是編譯速度快，但不能過於複雜</span></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">Function</span> <span class="params">()</span></span>; <span class="comment">// 自定義的函式</span></span><br><span class="line">    <span class="comment">// 另外，回傳值前加入const，表示回傳值不可改變</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">double</span> re, im;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">////////////</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Complex::Function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  ... <span class="comment">// 2. 類－定義: class definition</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>對於標頭檔中的內容，這邊做個簡單的解釋，這邊大概分成三個部分：</p>
+<ul>
+<li><strong>Header Guard</strong>與<strong>引用</strong>：最上面的區域</li>
+<li><strong>類別聲明（class declarations）</strong>: 中間的部分，進行類別成員的聲明動作。在我看來，是在跟系統說「我有這個成員喔！」，接著就會自動引導到<strong>類別定義（class definition）</strong>去實作這個方法</li>
+<li><strong>類別定義（class definitions）（optional）</strong>: 通常，類別定義會出現在對應這個標頭檔的.cpp裏頭，但也可以定義在最下面這部分</li>
+</ul>
+<h2 id="How-to-Build-a-Class-Class-Members"><a href="#How-to-Build-a-Class-Class-Members" class="headerlink" title="How to Build a Class - Class Members"></a>How to Build a Class - Class Members</h2><p>以下會講解，成員函數或變數的相關知識，以及用法。</p>
+<p>我們首要提到的就是<strong>成員存取控制（Access Levels）</strong>，他會對每個類別成員，做存取控制的設定，做好<strong>封裝（Encapsulation）</strong>管理。</p>
+<h3 id="Access-Levels"><a href="#Access-Levels" class="headerlink" title="Access Levels"></a>Access Levels</h3><table>
+<thead>
+<tr>
+<th><strong>Levels</strong></th>
+<th><strong>In Class</strong></th>
+<th><strong>Out of Class</strong></th>
+<th><strong>Can be inherited</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>public</strong></td>
+<td>🆗</td>
+<td>🆗</td>
+<td>🆗</td>
+</tr>
+<tr>
+<td><strong>private</strong></td>
+<td>🆗</td>
+<td>🚫</td>
+<td>🚫</td>
+</tr>
+<tr>
+<td><strong>protected</strong></td>
+<td>🆗</td>
+<td>🚫</td>
+<td>🆗</td>
+</tr>
+</tbody></table>
+<ul>
+<li>對上面表格的相關說明：<ul>
+<li>我們有三種存取控制階層，分別是<code>public</code> , <code>private</code> 以及<code>protected</code></li>
+<li>每個階層有其對應的存取範圍，分別是In class, out of class and Can be inherited<ul>
+<li><strong>In Class</strong>: 可以在本身自己的類別範圍內存取，存取範圍是最小的。其他類別或繼承他的類別，是無法知道他的存在</li>
+<li><strong>Out of Class</strong>: 其他的類別，是可以存取這個類別成員的。好比眾所皆知的公眾人物</li>
+<li><strong>Can be inherited</strong>: 表示自身，以及繼承該類別的子類別（又叫 <strong>衍生類別</strong>，derived class）可以進行存取。就像住在同一個屋簷下，兒子總會知道老爸的一些底細</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Setter-and-Getter"><a href="#Setter-and-Getter" class="headerlink" title="Setter and Getter"></a>Setter and Getter</h3><p>對於一個無法從外部取得，存取權限為<code>private</code> 的成員變數而言，為了要從外部存取該成員，我們常會加上Setter and Getter來對這個變數做存取管理。</p>
+<p>直接來看以下範例吧！</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> salary_;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// Setter</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">set_salary</span><span class="params">(<span class="type">int</span> s)</span> </span>&#123; salary_ = s; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Getter</span></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">salary</span><span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> salary_; &#125;</span><br><span class="line">    <span class="comment">// or get_salary()...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>程式碼解說：<ul>
+<li>目的：我們對<code>Employee</code> 這個類別中的<code>salary_</code> 這個<code>private</code> 成員，設置Setter and Getter</li>
+<li><strong>Setter</strong>: <strong>變異子，</strong>賦與值，對<code>salary_</code>進行寫入動作<ul>
+<li>深入探討：這個也可以寫成<code>void set_salary(const int&amp; s) &#123; salary_ = s; &#125;</code>，觀察看到小括弧中的<code>const int&amp;</code> 是對<code>s</code>做Pass by Reference to Constant，晚點會講到！</li>
+</ul>
+</li>
+<li><strong>Getter</strong>: <strong>訪問子</strong>，讀取值，對<code>salary_</code>進行數值的讀取<ul>
+<li>深入探討：小括弧跟上大括弧之間的<code>const</code> ，會強制以<strong>常數方式</strong>訪問的成員，比較安全，不會因為訪問而變動到這個數值</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Inline-Function"><a href="#Inline-Function" class="headerlink" title="Inline Function"></a>Inline Function</h3><p><strong>內嵌函數</strong>，看到內嵌函數，只要記得：當程式碼呼叫到這個函數的話，經過<strong>編譯器編譯</strong>後，他會直接將他的定義，<strong>插入並取代</strong>調用他的地方，可以說在原地<strong>展開</strong>這個函數的定義。</p>
+<ul>
+<li>好處：節省了每次調用函數帶來的額外時間開支</li>
+<li>要注意的是，要進行內嵌的函數，不能夠<strong>太複雜</strong>，且<strong>不能是遞回形式</strong>，否則編譯器不會理我們</li>
+</ul>
+<p>以下為一個內嵌函數的範例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">HelloWorld</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">SayHello</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Out of class</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">HelloWorld::SayHello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Hello World!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面程式碼為編譯器的行為：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///////// Before Compiled //////////</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    HelloWorld hw;</span><br><span class="line">    hw.<span class="built_in">SayHello</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">///////// After Compiled //////////</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    HelloWorld hw;</span><br><span class="line">    <span class="comment">//hw.SayHello();    // Directly extent here!</span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Hello World!&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Constructor-and-Destructor"><a href="#Constructor-and-Destructor" class="headerlink" title="Constructor and Destructor"></a>Constructor and Destructor</h3><p><strong>建構子</strong>，在類別中是一個重要的函數，當這個類別的物件（Object）被創建時（也就是在程式碼中要呼叫並創建該類別），編譯器總是會尋找跟這個類別匹配的建構子，自動執行建構子中的函數內容。</p>
+<p>這邊簡單講解幾點關於建構子的重點：</p>
+<ul>
+<li>建構子函數中，通常會執行：初始化類別中的參數，以及執行其他函數（檢查數值啊，讀取資料等等）</li>
+<li>建構子名稱必須跟類別名稱一樣；且建構子沒有回傳值（沒有return）</li>
+<li>相反的函數為<strong>解構子</strong>，意思是當這個類別的物件要被刪除（解構）時，會自動呼叫解構子</li>
+<li>如果一個類別沒有定義建構子或解構子時，會使用<strong>編譯器預設</strong>的建構子或解構子</li>
+</ul>
+<p>下面程式碼為String的建構子與解構子範例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">String::<span class="built_in">String</span>(<span class="type">const</span> <span class="type">char</span>* cstr = <span class="number">0</span>) <span class="comment">// 建構子</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (cstr) &#123;    <span class="comment">// 判別是否有值</span></span><br><span class="line">        m_data = <span class="keyword">new</span> <span class="type">char</span>[<span class="built_in">strlen</span>(cstr)+<span class="number">1</span>];    <span class="comment">// 最後在+1 為結束符號&#x27;\0&#x27;</span></span><br><span class="line">        <span class="built_in">strcpy</span>(m_data, cstr);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;    <span class="comment">// 未指定初始值</span></span><br><span class="line">        m_data = <span class="keyword">new</span> <span class="type">char</span>[<span class="number">1</span>];</span><br><span class="line">        *m_data = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">String::~<span class="built_in">String</span>() <span class="comment">// 解構子</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">delete</span>[] m_data;    <span class="comment">// 之前是new一個array，因此這邊要刪除array []</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>另，關於建構子，也會提到一個深入的觀念，叫做<strong>Big of Three</strong>三大函數：</p>
+<ul>
+<li><strong>Constructor</strong> (建構子):<code>String(const char* cstr=0)</code></li>
+</ul>
+<ol>
+<li><strong>Destructor</strong> (解構子): <code>~String()</code></li>
+<li><strong>Copy constructor</strong> (複製建構子): <code>String(const String&amp; str)</code></li>
+<li><strong>Copy assignment operator</strong> (設定運算子): <code>String&amp; operator=(const String&amp; str)</code></li>
+</ol>
+<p>在這邊不在做細述，有機會可以在做介紹～</p>
+<h3 id="Initialization-List"><a href="#Initialization-List" class="headerlink" title="Initialization List"></a>Initialization List</h3><p>建構子中，初始化參數時，我們會較常使用Initialization List來對參數初始化，會有比較好的執行效能</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Class Point &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> x;</span><br><span class="line">    <span class="type">int</span> y;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Point</span>(<span class="type">int</span> i = <span class="number">0</span>, <span class="type">int</span> j = <span class="number">0</span>)</span><br><span class="line">        :<span class="built_in">x</span>(i), <span class="built_in">y</span>(j)  <span class="comment">// &lt;== This is Initialization List</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        Equal to: </span></span><br><span class="line"><span class="comment">		Point(int i = 0, int j = 0) &#123; </span></span><br><span class="line"><span class="comment">			x = i; </span></span><br><span class="line"><span class="comment">			y = j; </span></span><br><span class="line"><span class="comment">		&#125; </span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Passing-and-Returning-Values"><a href="#Passing-and-Returning-Values" class="headerlink" title="Passing and Returning Values"></a>Passing and Returning Values</h2><p>撰寫函數時，總會遇到<strong>傳遞&#x2F;回傳</strong>數值的相關問題，以下列出主要的兩種傳遞方式：</p>
+<ul>
+<li><strong>Pass&#x2F;Return by value</strong>: 被傳遞或回傳的參數值，是不會變動的，會維持原先的初始值。因為只是<strong>複製並傳遞</strong>當前的參數值進行操作<ul>
+<li>好處：原先的數值不會被變動，只是拷貝一份物件進到此函數中操作</li>
+<li>可能的壞處：如果該物件過大時，如一個非常大的字串或struct，可能會影響執行效能，因為每次使用到都要拷貝一份過去</li>
+</ul>
+</li>
+<li><strong>Pass&#x2F;Return by reference</strong>: 傳遞或回傳的對象為這個物件（變數）的地址（Reference），因此當函數對此變數進行數值改動的話，原先的初始值會遭到變動，因為是直接到這個物件的地址去讀取或修改數值<ul>
+<li>好處：傳遞快速，不需要拷貝就可以參考到該變數</li>
+<li>可能的壞處：一不小心會將數值修改到，可能會造成隱性的bug; 但可以依照使用情境，實作<strong>Pass by Reference to Constant</strong>來迴避這個壞處</li>
+</ul>
+</li>
+</ul>
+<p>以下就來看看，他們怎麼實作吧！</p>
+<h3 id="Pass-by-Value"><a href="#Pass-by-Value" class="headerlink" title="Pass by Value"></a>Pass by Value</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//建構子中，傳遞的double值 r 以及 i</span></span><br><span class="line"><span class="built_in">complex</span> (<span class="type">double</span> r = <span class="number">0</span>, <span class="type">double</span> i = <span class="number">0</span>)    <span class="comment">// Here</span></span><br><span class="line">    : <span class="built_in">re</span> (r), <span class="built_in">im</span> (i)</span><br><span class="line">    &#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Pass-by-Reference"><a href="#Pass-by-Reference" class="headerlink" title="Pass by Reference"></a>Pass by Reference</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ostream傳遞位址，os這個變數將會被改變</span></span><br><span class="line">ostream&amp;</span><br><span class="line"><span class="keyword">operator</span> &lt;&lt; (ostream&amp; os, <span class="type">const</span> Complex&amp; x)&#123;    </span><br><span class="line">    <span class="keyword">return</span> os &lt;&lt; <span class="string">&#x27;(&#x27;</span> &lt;&lt; <span class="built_in">real</span> (x) &lt;&lt; <span class="string">&#x27;,&#x27;</span></span><br><span class="line">              &lt;&lt; <span class="built_in">imag</span> (x) &lt;&lt; <span class="string">&#x27;)&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Pass-by-Reference-to-Constant"><a href="#Pass-by-Reference-to-Constant" class="headerlink" title="Pass by Reference to Constant"></a>Pass by Reference to Constant</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Complex&amp; <span class="keyword">operator</span> += (<span class="type">const</span> Complex&amp;);</span><br><span class="line"><span class="comment">// += 右邊的變數，是被加的，不會改變其量值，因此加上const</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Return-by-Value"><a href="#Return-by-Value" class="headerlink" title="Return by Value"></a>Return by Value</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> <span class="title">real</span> <span class="params">()</span> <span class="type">const</span> </span>&#123; <span class="keyword">return</span> re; &#125;    <span class="comment">// 回傳值，因其沒有位址</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Return-by-Reference"><a href="#Return-by-Reference" class="headerlink" title="Return by Reference"></a>Return by Reference</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Complex&amp; <span class="keyword">operator</span> += ( <span class="type">const</span> Complex&amp; );    <span class="comment">// 回傳的值需要&quot;賦值&quot; 給變數</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Appendix-Smart-Pointer"><a href="#Appendix-Smart-Pointer" class="headerlink" title="Appendix - Smart Pointer"></a>Appendix - Smart Pointer</h2><p>可以用來取代傳統的pointer方法，更具有強健性、更加可靠，也可以自動做好內存管理，以避免memory leaking的問題</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;memory&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span>* a = <span class="keyword">new</span> <span class="built_in">int</span>(<span class="number">0</span>);  <span class="comment">// allocate memory</span></span><br><span class="line"><span class="type">int</span> b = *a;           <span class="comment">// dereference</span></span><br><span class="line"><span class="keyword">delete</span> a;             <span class="comment">// release resource</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//////// Use Smart pointer ////////</span></span><br><span class="line"><span class="function">std::unique_ptr&lt;<span class="type">int</span>&gt; <span class="title">a</span><span class="params">( <span class="keyword">new</span> <span class="type">int</span>(<span class="number">0</span>) )</span></span>;</span><br><span class="line"><span class="comment">// or: std::unique_ptr&lt;int&gt; a = make_unique&lt;int&gt;(0);</span></span><br><span class="line"><span class="type">int</span> b = *a;</span><br><span class="line"><span class="comment">// NO NEED to release &#x27;a&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Appendix-Enum-Class"><a href="#Appendix-Enum-Class" class="headerlink" title="Appendix - Enum Class"></a>Appendix - Enum Class</h2><p>用來取代傳統的enum方法</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://i.imgur.com/WPBFLSn.png"
+                        alt="WPBFLSn.png"
+                 ></p>
+<h2 id="Appendix-Coding-Style"><a href="#Appendix-Coding-Style" class="headerlink" title="Appendix - Coding Style"></a>Appendix - Coding Style</h2><p><strong>Reference：</strong></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://tw-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/contents.html" >https://tw-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/contents.html<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a class="link"   target="_blank" rel="noopener" href="https://hackmd.io/@1_KXOGKTSJ-h5DpyHTXySg/rk5ki3auK" >C++ 物件導向高級程式學習筆記<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://yhtechnote.com/constructor/" >科技讀蟲 C++ 建構子<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/when-do-we-use-initializer-list-in-c/" >When do we use Initializer List in C++?<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://dotblogs.com.tw/v6610688/2013/11/27/introduction_inline_function" >[C++]內嵌函數（inline　function）筆記<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://vinesmsuic.github.io/2020/01/09/c++-initializationlists/#initializer-list" >C++ Constructor後面的”:”是什麼鬼意思？ (Initialization List 教學)<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://kheresy.wordpress.com/2019/03/27/using-enum-class/" >使用 enum class 取代傳統的 enum<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>這篇文章的初稿，其實是我在公司與同事分享的ＰＰＴ；自己希望將這些重要的概念，寫成文章，將使用方法記錄下來，以便未來自己可以去重複複習，在創建一個類別時，可以有所依據。也希望可以幫助到有需要的朋友們！</p>
+<p>如果文章內容有錯誤的話，歡迎留言與我指教指教！</p>
+
+                </div>
+
+                
+                        
+<div class="post-copyright-info-container border-box">
+    <div class="copyright-info-content border-box">
+        <div class="copyright-info-top border-box">
+            <div class="copyright-post-title border-box text-ellipsis">
+                Briefly Talk about C++ Class - Object Based
+            </div>
+
+            <div class="copyright-post-link border-box text-ellipsis">
+                2024/03/24/cpp-breifly-talk-obj-base/
+            </div>
+        </div>
+
+        <div class="copyright-info-bottom border-box">
+            <div class="copyright-post-author bottom-item">
+                <div class="type">
+                    Author
+                </div>
+                <div class="content">Jimmy Shen</div>
+            </div>
+
+            <div class="post-time bottom-item">
+                <div class="type">
+                    Published
+                </div>
+                <div class="content">2024-03-24 23:46</div>
+            </div>
+
+
+            <div class="post-license bottom-item">
+                <div class="type">
+                    License
+                </div>
+                <div class="content tooltip" data-tooltip-content="CC BY-NC-SA 4.0">
+                    <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed">
+                        <i class="fa-brands fa-creative-commons"></i>
+                        <i class="fa-brands fa-creative-commons-by"></i>
+                        <i class="fa-brands fa-creative-commons-nc"></i>
+                        <i class="fa-brands fa-creative-commons-sa"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <i class="copyright-bg fa-solid fa-copyright"></i>
+    </div>
+    <div class="copy-copyright-info flex-center tooltip" data-tooltip-content="Copy copyright info" data-tooltip-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/c/">c++</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+                    <div class="reward-author-container border-box flex-center">
+    <div class="reward-btn keep-button border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="請我喝一杯讚的！"
+            data-tooltip-img-url="/images/givemeacoffee.png"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -8px;"
+    >
+        <i class="fa-solid fa-hand-holding-heart"></i>
+    </div>
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2024/04/06/arduino-start-up-withMacOS-md/"
+                                   title="Arduino - Start Arduino in MacOS"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Arduino - Start Arduino in MacOS</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2024/03/09/202403-hexo/hexo_build_part3-2/"
+                                   title="Hexo at MacOS架站心路歷程：Part III - Hexo部署架設 - Netlify + Github 篇"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Hexo at MacOS架站心路歷程：Part III - Hexo部署架設 - Netlify + Github 篇</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">Comment plugin failed to load</span>
+    <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="disqus-comments-container">
+        <div id="disqus_thread"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.initDisqus) {
+            window.KeepCommentPlugin.initDisqus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = '//quanjun-space.disqus.com/embed.js'
+              script.setAttribute('data-timestamp', `${Date.now()}`)
+              document.querySelector('.disqus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initDisqus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initDisqus)
+          }
+        </script>
+        <script id="dsq-count-scr" src="//quanjun-space.disqus.com/count.js" async></script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-C-Class"><span class="nav-text">What is C++ Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-Build-a-Class-Header-File"><span class="nav-text">How to Build a Class - Header File</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Header-File-%E6%A8%99%E9%A0%AD%E6%AA%94"><span class="nav-text">Header File 標頭檔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Class-Members-Declaration-%E9%A1%9E%E5%88%A5%E6%88%90%E5%93%A1%E8%AE%8A%E6%95%B8%E3%80%81%E5%87%BD%E6%95%B8%E5%AE%9A%E7%BE%A9"><span class="nav-text">Class Members Declaration 類別成員變數、函數定義</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-Build-a-Class-Class-Members"><span class="nav-text">How to Build a Class - Class Members</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-Levels"><span class="nav-text">Access Levels</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Setter-and-Getter"><span class="nav-text">Setter and Getter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inline-Function"><span class="nav-text">Inline Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Constructor-and-Destructor"><span class="nav-text">Constructor and Destructor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Initialization-List"><span class="nav-text">Initialization List</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Passing-and-Returning-Values"><span class="nav-text">Passing and Returning Values</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pass-by-Value"><span class="nav-text">Pass by Value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pass-by-Reference"><span class="nav-text">Pass by Reference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pass-by-Reference-to-Constant"><span class="nav-text">Pass by Reference to Constant</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Return-by-Value"><span class="nav-text">Return by Value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Return-by-Reference"><span class="nav-text">Return by Reference</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Appendix-Smart-Pointer"><span class="nav-text">Appendix - Smart Pointer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Appendix-Enum-Class"><span class="nav-text">Appendix - Enum Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Appendix-Coding-Style"><span class="nav-text">Appendix - Coding Style</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-text">小結</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2023</span>&nbsp;-&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Jimmy Shen</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+                
+                <div class="deploy-info info-item default">
+                    
+                        This site is deployed on <span class="tooltip" data-tooltip-content="Netlify"><img src="/images/deploy-provider/netlify.png"></span>
+                    
+                </div>
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+                <span class="count-box border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-box border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-C-Class"><span class="nav-text">What is C++ Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-Build-a-Class-Header-File"><span class="nav-text">How to Build a Class - Header File</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Header-File-%E6%A8%99%E9%A0%AD%E6%AA%94"><span class="nav-text">Header File 標頭檔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Class-Members-Declaration-%E9%A1%9E%E5%88%A5%E6%88%90%E5%93%A1%E8%AE%8A%E6%95%B8%E3%80%81%E5%87%BD%E6%95%B8%E5%AE%9A%E7%BE%A9"><span class="nav-text">Class Members Declaration 類別成員變數、函數定義</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-Build-a-Class-Class-Members"><span class="nav-text">How to Build a Class - Class Members</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-Levels"><span class="nav-text">Access Levels</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Setter-and-Getter"><span class="nav-text">Setter and Getter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inline-Function"><span class="nav-text">Inline Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Constructor-and-Destructor"><span class="nav-text">Constructor and Destructor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Initialization-List"><span class="nav-text">Initialization List</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Passing-and-Returning-Values"><span class="nav-text">Passing and Returning Values</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pass-by-Value"><span class="nav-text">Pass by Value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pass-by-Reference"><span class="nav-text">Pass by Reference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pass-by-Reference-to-Constant"><span class="nav-text">Pass by Reference to Constant</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Return-by-Value"><span class="nav-text">Return by Value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Return-by-Reference"><span class="nav-text">Return by Reference</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Appendix-Smart-Pointer"><span class="nav-text">Appendix - Smart Pointer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Appendix-Enum-Class"><span class="nav-text">Appendix - Enum Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Appendix-Coding-Style"><span class="nav-text">Appendix - Coding Style</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-text">小結</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+            
+<script src="/js/post/copyright-info.js"></script>
+
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>
