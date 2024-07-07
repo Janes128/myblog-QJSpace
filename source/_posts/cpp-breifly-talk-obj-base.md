@@ -3,7 +3,7 @@ title: Briefly Talk about C++ Class - Object Based
 date: 2024-03-24 23:46:00
 updated:
 tags: c++
-categories: Software
+categories: software
 ---
 
 > 本篇文章會簡單介紹，關於C++ Class類別的簡單概念與使用方法，說明其特色，讓讀者對C++ Class有初步的認識。

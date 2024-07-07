@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Software, LiteStyle, Reading">
+    <meta name="description" content="I am a software engineer. This websie is my work and life records.">
+    <meta name="author" content="Jimmy Shen">
+    
+    <title>
+        
+            Git 使用教學－如何在VS 2022將自己的程式碼，更新至主分支(by Github) |
+        
+        Quan-Jun Space
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/QJ_Icon.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"janes128.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#669966","title":"Quan-Jun Space","author":"Jimmy Shen","avatar":"/images/Jimmy.png","logo":"/images/QJ_Logo.svg","favicon":"/images/QJ_Icon.svg"},"menu":{"Archives":"/archives","Tags":"/tags","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.png","background_img_dark":"/images/night-bg.png","description":"Never lose your value, have a life, and live it with your pride.","hitokoto":false,"social_contact":{"enable":true,"links":{"github":"https://github.com/Janes128","twitter":null,"facebook":null,"email":"jimmy851208@gmail.com"}}},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":false},"home":{"category":true,"tag":true,"announcement":null},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":true,"share":false,"reward":{"enable":true,"img_link":"/images/givemeacoffee.png","text":"請我喝一杯讚的！"}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"disqus","disqus":{"enable":true,"shortname":"quanjun-space","count":true}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2023,"word_count":false,"icp":{"enable":false,"record_code":null,"url":null},"site_deploy":{"enable":true,"provider":"netlify","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","version":"4.0.7"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/QJ_Logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Quan-Jun Space
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Git 使用教學－如何在VS 2022將自己的程式碼，更新至主分支(by Github)
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/Jimmy.png">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Jimmy Shen</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2024-07-07 23:50:15</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Sun Jul 07 2024 23:10:08 GMT+0800">2024-07-07 23:10:08</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/software/">software</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/git/">git</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>3 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <p>有鑑於最近公司專案規劃，有合併程式、更新最新版程式的需求，因此手把手教學在VS 2022中，怎麼將自己的程式碼更新到最新版，並且合併上傳至主分支的流程。</p>
+<ul>
+<li>相關資訊<ul>
+<li>我使用 GitFlow 工作流</li>
+<li>我使用 Github 作為線上存放庫</li>
+<li>學習的參考影片，請參見：<a class="link"   target="_blank" rel="noopener" href="https://youtu.be/uj8hjLyEBmU?si=LhyT-WpM6E-HpTb7" >https://youtu.be/uj8hjLyEBmU?si=LhyT-WpM6E-HpTb7<i class="fas fa-external-link-alt"></i></a> 。作者分享的很好，也有圖例與git指令可以參考</li>
+</ul>
+</li>
+<li>此方法可以協助開發人員，持續在”最新版本”上進行開發，減少合併會遇到的各種衝突</li>
+</ul>
+<p>讓我們開始吧！</p>
+<h3 id="Step-1－在本地端中切回主分支"><a href="#Step-1－在本地端中切回主分支" class="headerlink" title="Step 1－在本地端中切回主分支"></a>Step 1－在本地端中切回主分支</h3><p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/BJS-oprGR.png"
+                       
+                 ></p>
+<h3 id="Step-2－在本地端”提取”並更新主分支"><a href="#Step-2－在本地端”提取”並更新主分支" class="headerlink" title="Step 2－在本地端”提取”並更新主分支"></a>Step 2－在本地端”提取”並更新主分支</h3><p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/rkwuipHzR.png"
+                       
+                 ></p>
+<h3 id="Step-3－切回自己修改的分支-feature-branch"><a href="#Step-3－切回自己修改的分支-feature-branch" class="headerlink" title="Step 3－切回自己修改的分支(feature branch)"></a>Step 3－切回自己修改的分支(feature branch)</h3><p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/B1EzRpSMR.png"
+                       
+                 ></p>
+<h3 id="Step-4－將主分支的更新，重訂基底-Rebase-回自己的分支"><a href="#Step-4－將主分支的更新，重訂基底-Rebase-回自己的分支" class="headerlink" title="Step 4－將主分支的更新，重訂基底(Rebase)回自己的分支"></a>Step 4－將主分支的更新，重訂基底(Rebase)回自己的分支</h3><p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/H1xy06HMC.png"
+                       
+                 ></p>
+<ul>
+<li>目前在自己的分支，要在develop上按下右鍵</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/H1bDApHzA.png"
+                       
+                 ></p>
+<ul>
+<li>當Rebase發生衝突時，請妥善的解決衝突</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/rkv03lIG0.png"
+                       
+                 ></p>
+<ul>
+<li>Rebase後會長這樣</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/rk5hAaHGC.png"
+                       
+                 ></p>
+<h3 id="Step-5－強制推回”遠端自己”的分支"><a href="#Step-5－強制推回”遠端自己”的分支" class="headerlink" title="Step 5－強制推回”遠端自己”的分支"></a>Step 5－強制推回”遠端自己”的分支</h3><blockquote>
+<p>重要提醒：此時的遠端更新，是要更新”自己的”分支，而非主分支</p>
+</blockquote>
+<ul>
+<li>也可以直接按下”<strong>Sync</strong>“ (fetch and pull)</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/SJ-61RSMA.png"
+                       
+                 ></p>
+<p>以上流程，可以於自己的專案中經常這麼做，以確保自己的專案是處在最新版本的喔！</p>
+<p>未來有PR時，也比較不會有那麼多衝突。</p>
+<hr>
+<h3 id="Step-6－提出新的”提取需求”-去更新主分支，再由管理者進行主分支進版"><a href="#Step-6－提出新的”提取需求”-去更新主分支，再由管理者進行主分支進版" class="headerlink" title="Step 6－提出新的”提取需求” 去更新主分支，再由管理者進行主分支進版"></a>Step 6－提出新的”提取需求” 去更新主分支，再由管理者進行主分支進版</h3><ul>
+<li>現在，要創建一個新的”提取需求”，更新主分支，讓主分支在最新版</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/BytYgArzR.png"
+                       
+                 ></p>
+<blockquote>
+<p>必須要選好: 要進行合併的目標與來源，這個步驟關鍵點，記得要選好</p>
+</blockquote>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/r1OAlCHGR.png"
+                       
+                 ></p>
+<ul>
+<li>輸入好左側”輸入標題”欄位後，按下”create”</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/SJrNReIfC.png"
+                       
+                 ></p>
+<ul>
+<li>按下”create”，會出現一個提取要求連結，請點入連結到Github網站上</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/rypA-CSzA.png"
+                       
+                 ></p>
+<ul>
+<li>直接到Github中，進行相關資訊的檢查，也可以留下自己的Commit評論。完成後，將綠色的merge按鍵，重新選為”<strong>Squash and merge</strong>“的方式進行合併</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/HJ9q-0rfA.png"
+                       
+                 ></p>
+<blockquote>
+<p>備註：<strong>Squash and merge</strong> 的用意在於：將完成提取要求時壓縮主題分支的Git 歷程記錄，這會將這個主題分支的commit message 合成成單一個message，用意是比較清楚與簡化。但，這可以自行評估使用，且看自己的需求。</p>
+</blockquote>
+<ul>
+<li>檢查Merge Message並進行修改，接著按下”<strong>Confirm squash and merge</strong>“進行提交</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/BJloMfCSzR.png"
+                       
+                 ></p>
+<ul>
+<li>並且將這個已經合併的自己的舊分支刪除(如紅色箭頭)</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/BylHM0SMA.png"
+                       
+                 ></p>
+<ul>
+<li>此時可以回去主頁面，查看是否已將舊分支刪除了</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/HJh9f0HzA.png"
+                       
+                 ></p>
+<h3 id="Step-7－本地端切回主分支，並刪除自己的舊分支"><a href="#Step-7－本地端切回主分支，並刪除自己的舊分支" class="headerlink" title="Step 7－本地端切回主分支，並刪除自己的舊分支"></a>Step 7－本地端切回主分支，並刪除自己的舊分支</h3><ul>
+<li>先切到<em>develop</em></li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/ryJk70BzC.png"
+                       
+                 ></p>
+<ul>
+<li>刪除本機自己的分支</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/S17-70SG0.png"
+                       
+                 ></p>
+<ul>
+<li>刪除遠端自己的分支</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/SJNOm0Sf0.png"
+                       
+                 ></p>
+<ul>
+<li>在當前分支(<em>develop</em>)進行”<strong>Sync</strong>“或”<strong>Pull</strong>“，亦即將當前分支更新為最新版本</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/HJ6V70SzA.png"
+                       
+                 ></p>
+<ul>
+<li>查看紀錄，是否有更新為最新版的程式</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://hackmd.io/_uploads/H1uLXAHGC.png"
+                       
+                 ></p>
+<p>:::info</p>
+<blockquote>
+<p><strong>恭喜完成！ 🎉</strong><br>:::</p>
+</blockquote>
+<h2 id="小結"><a href="#小結" class="headerlink" title="小結"></a>小結</h2><p>雖然步驟會比較麻煩，但這真的有助於團隊在合併程式碼時，可以更方便的合作。如果省略這樣的過程直接merge，無疑是殺雞取卵的作法，已經體驗過了，真的痛苦。</p>
+<p>另外，平常時，可以使用”<strong>Step 1</strong>~<strong>Step 5</strong>“，常態性的將自己的版本維持到線上的最新版本，減少衝突狀況出現。</p>
+
+                </div>
+
+                
+                        
+<div class="post-copyright-info-container border-box">
+    <div class="copyright-info-content border-box">
+        <div class="copyright-info-top border-box">
+            <div class="copyright-post-title border-box text-ellipsis">
+                Git 使用教學－如何在VS 2022將自己的程式碼，更新至主分支(by Github)
+            </div>
+
+            <div class="copyright-post-link border-box text-ellipsis">
+                2024/07/07/20240706_Git-update-vs2022/
+            </div>
+        </div>
+
+        <div class="copyright-info-bottom border-box">
+            <div class="copyright-post-author bottom-item">
+                <div class="type">
+                    Author
+                </div>
+                <div class="content">Jimmy Shen</div>
+            </div>
+
+            <div class="post-time bottom-item">
+                <div class="type">
+                    Published
+                </div>
+                <div class="content">2024-07-07 23:50</div>
+            </div>
+
+
+            <div class="post-license bottom-item">
+                <div class="type">
+                    License
+                </div>
+                <div class="content tooltip" data-tooltip-content="CC BY-NC-SA 4.0">
+                    <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed">
+                        <i class="fa-brands fa-creative-commons"></i>
+                        <i class="fa-brands fa-creative-commons-by"></i>
+                        <i class="fa-brands fa-creative-commons-nc"></i>
+                        <i class="fa-brands fa-creative-commons-sa"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <i class="copyright-bg fa-solid fa-copyright"></i>
+    </div>
+    <div class="copy-copyright-info flex-center tooltip" data-tooltip-content="Copy copyright info" data-tooltip-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/git/">git</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+                    <div class="reward-author-container border-box flex-center">
+    <div class="reward-btn keep-button border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="請我喝一杯讚的！"
+            data-tooltip-img-url="/images/givemeacoffee.png"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -8px;"
+    >
+        <i class="fa-solid fa-hand-holding-heart"></i>
+    </div>
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2024/04/15/dlai-chatgpt-api-course-1-md/"
+                                   title="DLAI - ChatGPT API [I] - Language Models, the Chat Format and Tokens"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">DLAI - ChatGPT API [I] - Language Models, the Chat Format and Tokens</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">Comment plugin failed to load</span>
+    <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="disqus-comments-container">
+        <div id="disqus_thread"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.initDisqus) {
+            window.KeepCommentPlugin.initDisqus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = '//quanjun-space.disqus.com/embed.js'
+              script.setAttribute('data-timestamp', `${Date.now()}`)
+              document.querySelector('.disqus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initDisqus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initDisqus)
+          }
+        </script>
+        <script id="dsq-count-scr" src="//quanjun-space.disqus.com/count.js" async></script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1%EF%BC%8D%E5%9C%A8%E6%9C%AC%E5%9C%B0%E7%AB%AF%E4%B8%AD%E5%88%87%E5%9B%9E%E4%B8%BB%E5%88%86%E6%94%AF"><span class="nav-text">Step 1－在本地端中切回主分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2%EF%BC%8D%E5%9C%A8%E6%9C%AC%E5%9C%B0%E7%AB%AF%E2%80%9D%E6%8F%90%E5%8F%96%E2%80%9D%E4%B8%A6%E6%9B%B4%E6%96%B0%E4%B8%BB%E5%88%86%E6%94%AF"><span class="nav-text">Step 2－在本地端”提取”並更新主分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-3%EF%BC%8D%E5%88%87%E5%9B%9E%E8%87%AA%E5%B7%B1%E4%BF%AE%E6%94%B9%E7%9A%84%E5%88%86%E6%94%AF-feature-branch"><span class="nav-text">Step 3－切回自己修改的分支(feature branch)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-4%EF%BC%8D%E5%B0%87%E4%B8%BB%E5%88%86%E6%94%AF%E7%9A%84%E6%9B%B4%E6%96%B0%EF%BC%8C%E9%87%8D%E8%A8%82%E5%9F%BA%E5%BA%95-Rebase-%E5%9B%9E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%88%86%E6%94%AF"><span class="nav-text">Step 4－將主分支的更新，重訂基底(Rebase)回自己的分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-5%EF%BC%8D%E5%BC%B7%E5%88%B6%E6%8E%A8%E5%9B%9E%E2%80%9D%E9%81%A0%E7%AB%AF%E8%87%AA%E5%B7%B1%E2%80%9D%E7%9A%84%E5%88%86%E6%94%AF"><span class="nav-text">Step 5－強制推回”遠端自己”的分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-6%EF%BC%8D%E6%8F%90%E5%87%BA%E6%96%B0%E7%9A%84%E2%80%9D%E6%8F%90%E5%8F%96%E9%9C%80%E6%B1%82%E2%80%9D-%E5%8E%BB%E6%9B%B4%E6%96%B0%E4%B8%BB%E5%88%86%E6%94%AF%EF%BC%8C%E5%86%8D%E7%94%B1%E7%AE%A1%E7%90%86%E8%80%85%E9%80%B2%E8%A1%8C%E4%B8%BB%E5%88%86%E6%94%AF%E9%80%B2%E7%89%88"><span class="nav-text">Step 6－提出新的”提取需求” 去更新主分支，再由管理者進行主分支進版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-7%EF%BC%8D%E6%9C%AC%E5%9C%B0%E7%AB%AF%E5%88%87%E5%9B%9E%E4%B8%BB%E5%88%86%E6%94%AF%EF%BC%8C%E4%B8%A6%E5%88%AA%E9%99%A4%E8%87%AA%E5%B7%B1%E7%9A%84%E8%88%8A%E5%88%86%E6%94%AF"><span class="nav-text">Step 7－本地端切回主分支，並刪除自己的舊分支</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-text">小結</span></a>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2023</span>&nbsp;-&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Jimmy Shen</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+                
+                <div class="deploy-info info-item default">
+                    
+                        This site is deployed on <span class="tooltip" data-tooltip-content="Netlify"><img src="/images/deploy-provider/netlify.png"></span>
+                    
+                </div>
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+                <span class="count-box border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-box border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1%EF%BC%8D%E5%9C%A8%E6%9C%AC%E5%9C%B0%E7%AB%AF%E4%B8%AD%E5%88%87%E5%9B%9E%E4%B8%BB%E5%88%86%E6%94%AF"><span class="nav-text">Step 1－在本地端中切回主分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2%EF%BC%8D%E5%9C%A8%E6%9C%AC%E5%9C%B0%E7%AB%AF%E2%80%9D%E6%8F%90%E5%8F%96%E2%80%9D%E4%B8%A6%E6%9B%B4%E6%96%B0%E4%B8%BB%E5%88%86%E6%94%AF"><span class="nav-text">Step 2－在本地端”提取”並更新主分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-3%EF%BC%8D%E5%88%87%E5%9B%9E%E8%87%AA%E5%B7%B1%E4%BF%AE%E6%94%B9%E7%9A%84%E5%88%86%E6%94%AF-feature-branch"><span class="nav-text">Step 3－切回自己修改的分支(feature branch)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-4%EF%BC%8D%E5%B0%87%E4%B8%BB%E5%88%86%E6%94%AF%E7%9A%84%E6%9B%B4%E6%96%B0%EF%BC%8C%E9%87%8D%E8%A8%82%E5%9F%BA%E5%BA%95-Rebase-%E5%9B%9E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%88%86%E6%94%AF"><span class="nav-text">Step 4－將主分支的更新，重訂基底(Rebase)回自己的分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-5%EF%BC%8D%E5%BC%B7%E5%88%B6%E6%8E%A8%E5%9B%9E%E2%80%9D%E9%81%A0%E7%AB%AF%E8%87%AA%E5%B7%B1%E2%80%9D%E7%9A%84%E5%88%86%E6%94%AF"><span class="nav-text">Step 5－強制推回”遠端自己”的分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-6%EF%BC%8D%E6%8F%90%E5%87%BA%E6%96%B0%E7%9A%84%E2%80%9D%E6%8F%90%E5%8F%96%E9%9C%80%E6%B1%82%E2%80%9D-%E5%8E%BB%E6%9B%B4%E6%96%B0%E4%B8%BB%E5%88%86%E6%94%AF%EF%BC%8C%E5%86%8D%E7%94%B1%E7%AE%A1%E7%90%86%E8%80%85%E9%80%B2%E8%A1%8C%E4%B8%BB%E5%88%86%E6%94%AF%E9%80%B2%E7%89%88"><span class="nav-text">Step 6－提出新的”提取需求” 去更新主分支，再由管理者進行主分支進版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-7%EF%BC%8D%E6%9C%AC%E5%9C%B0%E7%AB%AF%E5%88%87%E5%9B%9E%E4%B8%BB%E5%88%86%E6%94%AF%EF%BC%8C%E4%B8%A6%E5%88%AA%E9%99%A4%E8%87%AA%E5%B7%B1%E7%9A%84%E8%88%8A%E5%88%86%E6%94%AF"><span class="nav-text">Step 7－本地端切回主分支，並刪除自己的舊分支</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90"><span class="nav-text">小結</span></a>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+            
+<script src="/js/post/copyright-info.js"></script>
+
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>
