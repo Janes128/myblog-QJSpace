@@ -3,7 +3,7 @@ title: Arduino - Start Arduino in MacOS
 date: 2024-04-06 23:50:15
 updated:
 tags: arduino
-categories: LifeDIY
+categories: lifeDIY
 ---
 
 ## Install Arduino IDE and test in MacOS

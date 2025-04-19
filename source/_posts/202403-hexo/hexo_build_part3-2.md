@@ -3,7 +3,7 @@ title: Hexo at MacOS架站心路歷程：Part III - Hexo部署架設 - Netlify +
 date: 2024-03-09 23:21:27
 updated:
 tags: hexo
-categories: Software
+categories: software
 ---
 
 ## 動機與目的

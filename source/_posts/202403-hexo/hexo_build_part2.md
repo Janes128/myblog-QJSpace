@@ -3,7 +3,7 @@ title: Hexo at MacOS架站心路歷程：Part II - Hexo配置
 date: 2024-03-03 17:51:31
 # updated: 
 tags: hexo
-categories: Software
+categories: software
 ---
 
 > 上一篇經歷Hexo的環境安裝，現在就讓我們進行基礎的Hexo配置。

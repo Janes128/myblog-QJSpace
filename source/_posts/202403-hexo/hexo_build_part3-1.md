@@ -3,7 +3,7 @@ title: Hexo at MacOS架站心路歷程：Part III - Hexo部署架設 - Github Pa
 date: 2024-03-09 13:00:40
 updated:
 tags: hexo
-categories: Software
+categories: software
 ---
 
 > 上一篇經歷Hexo的設定配置，現在就讓我們進行Hexo的部署架設任務，期待我們的網站出現在網路世界上！
