@@ -71,6 +71,14 @@ default_category: uncategorized
 category_map:
 tag_map:
 
+# Menu
+menu:
+  archives: /archives
+  tags: /tags
+  categories: /categories
+  about: /about
+  # ...
+
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
 meta_generator: true
