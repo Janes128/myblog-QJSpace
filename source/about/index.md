@@ -1,7 +1,9 @@
 ---
 title: about
-date: 2024-02-24 10:37:57
 comment: true
+date: 2024-02-24 10:37:57
+updated: 2025-05-28 00:10:37
+layout: page
 ---
 
 ## About me

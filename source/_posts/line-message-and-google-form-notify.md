@@ -2,7 +2,9 @@
 title: (多圖) LINE Message API自動化：Google Form表單收到通知（取代舊版LINE Notify）
 date: 2025-05-25 18:27:25
 updated:
-tags: auto-bot
+tags: 
+    - auto-bot
+    - line-official-account
 categories: digital-marketing
 ---
 
