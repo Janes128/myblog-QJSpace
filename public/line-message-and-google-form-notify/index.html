@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Software, LiteStyle, Reading">
+    <meta name="description" content="I am a software engineer. This websie is my work and life records.">
+    <meta name="author" content="Jimmy Shen">
+    
+    <title>
+        
+            (多圖) LINE Message API自動化：Google Form表單收到通知（取代舊版LINE Notify） |
+        
+        Quan-Jun Space
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/QJ_Icon.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"janes128.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#669966","title":"Quan-Jun Space","author":"Jimmy Shen","avatar":"/images/Jimmy.png","logo":"/images/QJ_Logo.svg","favicon":"/images/QJ_Icon.svg"},"menu":{"Archives":"/archives","Tags":"/tags","Categories":"/categories","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.png","background_img_dark":"/images/night-bg.png","description":"Never lose your value, have a life, and live it with your pride.","hitokoto":false,"social_contact":{"enable":true,"links":{"github":"https://github.com/Janes128","twitter":null,"facebook":null,"email":"jimmy851208@gmail.com"}}},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":false},"home":{"category":true,"tag":true,"announcement":null},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":true,"share":false,"reward":{"enable":true,"img_link":"/images/givemeacoffee.png","text":"請我喝一杯讚的！"}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"disqus","disqus":{"enable":true,"shortname":"quanjun-space","count":true}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2023,"word_count":false,"icp":{"enable":false,"record_code":null,"url":null},"site_deploy":{"enable":true,"provider":"netlify","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","version":"4.0.7"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/QJ_Logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Quan-Jun Space
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >CATEGORIES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories"
+                    >CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        (多圖) LINE Message API自動化：Google Form表單收到通知（取代舊版LINE Notify）
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/Jimmy.png">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Jimmy Shen</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2025-05-25 18:27:25</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Wed May 28 2025 00:07:33 GMT+0800">2025-05-28 00:07:33</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/digital-marketing/">digital-marketing</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/auto-bot/">auto-bot</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/line-official-account/">line-official-account</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>6 Mins</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <blockquote>
+<p>前言：由於以往，客戶如果填寫google表單後，會使用「LINE Notify」連結並在LINE上做通知。<br>但現在LINE Notify功能在2025&#x2F;04起就停用了，在網路上尋覓替代方案，找到LINE Message API。<br>LINE Message API有免費使用限制，<strong>每個月200則訊息</strong>，但對小用量的使用者來說，應該是夠用（每天約6則訊息）<br>現在就跟大家分享，我是如何進行設置的。</p>
+</blockquote>
+<h4 id="大綱"><a href="#大綱" class="headerlink" title="大綱"></a>大綱</h4><ul>
+<li>建立LINE Bot與申請Message API</li>
+<li>創立Google Form與寫自動化提示Google Apps Script</li>
+<li>表單與設置結果測試</li>
+</ul>
+<p>那我們就開始吧！</p>
+<h2 id="Step-1-建立LINE-Bot與申請Message-API"><a href="#Step-1-建立LINE-Bot與申請Message-API" class="headerlink" title="Step 1. 建立LINE Bot與申請Message API"></a>Step 1. 建立LINE Bot與申請Message API</h2><h3 id="LINE-Developers內的操作與建置"><a href="#LINE-Developers內的操作與建置" class="headerlink" title="LINE Developers內的操作與建置"></a>LINE Developers內的操作與建置</h3><p>首先，進入 <a class="link"   target="_blank" rel="noopener" href="https://developers.line.biz/en/" >LINE Developers<i class="fas fa-external-link-alt"></i></a> 申請自己的帳號，並登入進去。<br>可以使用自己的LINE帳號，或者是從新建立一個獨立的LINE帳號。我是使用自己的。</p>
+<p>並進入後台介面，請點選下圖的「Console」進入控制後台。<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/./line-message-and-google-form-notify/line-developers-console.png"
+                        alt="alt text"
+                 ></p>
+<p>接著，點擊「Providers」旁邊的「Create」按鈕，建立一個新的Provider，並取名：<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/./line-message-and-google-form-notify/add_provider.png"
+                        alt="alt text"
+                 ><br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image.png"
+                        alt="alt text"
+                 ></p>
+<p>點選中間的「Create a Messaging API channel」&gt; 「Create a LINE Official Account」建立一個新的LINE Bot帳號<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-1.png"
+                        alt="alt text"
+                 ></p>
+<blockquote>
+<p>備註：這邊會建立一個新的LINE Bot，用來通知的機器人，未來是可以把這個機器人加入群組內。</p>
+</blockquote>
+<p>填寫基本的LINE官方註冊資料，即可完成註冊，按下「稍後進行認證」進入到管理畫面。<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-3.png"
+                        alt="alt text"
+                 ></p>
+<h3 id="LINE-Bot-Message-API啟用"><a href="#LINE-Bot-Message-API啟用" class="headerlink" title="LINE Bot Message API啟用"></a>LINE Bot Message API啟用</h3><p>辦好LINE官方機器人之後，我們要啟用Message API。<br>步驟：「設定」 &gt; 「Message API」 &gt; 按鈕「啟用Message API」<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-4.png"
+                        alt="alt text"
+                 ></p>
+<p>選擇剛剛在LINE Developers中建立的Provider名稱，點擊「同意」<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-5.png"
+                        alt="alt text"
+                 ><br>會出現「隱私權政策及服務條款」，可以不用進行填寫，直接「確定」，即可啟用Message API囉！</p>
+<h3 id="LINE-Bot-機器人細節設定"><a href="#LINE-Bot-機器人細節設定" class="headerlink" title="LINE Bot 機器人細節設定"></a>LINE Bot 機器人細節設定</h3><p>LINE Bot這個官方帳號，可以進行一些實用的客制化設定，如下：</p>
+<ul>
+<li><strong>讓機器人可以允許加入群組或聊天室</strong></li>
+</ul>
+<p>設定&gt;帳號設定&gt;功能切換&gt;加入群組或多人聊天室&gt;選擇「接受邀請加入群組或多人聊天室」</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-6.png"
+                        alt="alt text"
+                 ></p>
+<ul>
+<li><strong>關閉回應功能（歡迎訊息、自動回應）</strong></li>
+</ul>
+<p>設定&gt;回應設定&gt;回應功能&gt;關閉「加入好友的歡迎訊息」＆關閉「自動回應訊息」</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-7.png"
+                        alt="alt text"
+                 ></p>
+<h3 id="兩個關鍵的LINE-Developer-Token-User-ID-Access-Token"><a href="#兩個關鍵的LINE-Developer-Token-User-ID-Access-Token" class="headerlink" title="兩個關鍵的LINE Developer Token - User ID &amp; Access Token"></a>兩個關鍵的LINE Developer Token - User ID &amp; Access Token</h3><blockquote>
+<p>這兩個關鍵的Token很重要，不能夠外流！不然，人家拿到這兩個東東，會到處玩耍。</p>
+</blockquote>
+<ul>
+<li>建立「Channel Access Token」<br>回到LINE Developer剛剛建立的Provider，點擊「Messaging API」，滑到最下面。<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-8.png"
+                        alt="alt text"
+                 ></li>
+</ul>
+<p>最下面可以看到「<strong>Channel access token</strong>」，點擊「Issue」產生出我們需要的TOKEN本人：<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-9.png"
+                        alt="alt text"
+                 ><br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-11.png"
+                        alt="alt text"
+                 ><br>等等會用到這個。</p>
+<ul>
+<li>找到「Your user ID」<br>之後，回到最上面，點擊「Basic settings」頁籤，一樣捲到最下面，可以看到「<strong>Your user ID</strong>」字樣一長串的東東，這就是等等我們會用到的第二個token:<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-10.png"
+                        alt="alt text"
+                 ></li>
+</ul>
+<p>知道這兩個在哪後，我們接著來設定Google Form的部分囉！</p>
+<h2 id="Step-2-創立Google-Form與寫自動化提示Google-Apps-Script"><a href="#Step-2-創立Google-Form與寫自動化提示Google-Apps-Script" class="headerlink" title="Step 2. 創立Google Form與寫自動化提示Google Apps Script"></a>Step 2. 創立Google Form與寫自動化提示Google Apps Script</h2><p>在Google Drive中，建立你的表單（或者選擇你既有的表單），建立一些題目。<br>接著，按下三個點 &gt;「Apps Scripts」，如圖所示：<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-13.png"
+                        alt="alt text"
+                 ></p>
+<blockquote>
+<p>有時候登入時，會出現登入次數過多的錯誤訊息，可以嘗試清除快取與Cookie，再重新登入試試看</p>
+</blockquote>
+<p>進入到類似程式碼編輯器的畫面（其實他就是一個編輯器），如下圖：<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-14.png"
+                        alt="alt text"
+                 ></p>
+<p>在程式碼畫面中，貼上以下的程式碼：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 設定LINE Messaging API的Channel Access Token：這裡填入您的Channel Access Token</span></span><br><span class="line"><span class="keyword">const</span> channelAccessToken = <span class="string">&#x27;&lt;SET YOUR ACCESS TOKEN&gt;&#x27;</span>;</span><br><span class="line"><span class="comment">// 這裡填入您要收到訊息的用戶LINE user ID，要從LINE Developers管理者頁面取得，不是用戶自己創的ID。</span></span><br><span class="line"><span class="keyword">const</span> userId = <span class="string">&#x27;&lt;SET YOUR USER ID&gt;&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// trigger:Google表單提送觸發通知</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">onFormSubmit</span>(<span class="params">data</span>) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 這裡填入您要顯示的LINE訊息，\n是換行的標記。</span></span><br><span class="line">  <span class="keyword">let</span> msg = <span class="string">&#x27;** 新的諮詢單來囉！\n&#x27;</span>; </span><br><span class="line"> </span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> formResponses = data.<span class="property">response</span>.<span class="title function_">getItemResponses</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; formResponses.<span class="property">length</span>; i++) &#123;</span><br><span class="line">            <span class="comment">//取得問卷題目</span></span><br><span class="line">            <span class="keyword">var</span> item = formResponses[i].<span class="title function_">getItem</span>().<span class="title function_">getTitle</span>();</span><br><span class="line">            <span class="comment">//取得問卷答案</span></span><br><span class="line">            <span class="keyword">var</span> response = formResponses[i].<span class="title function_">getResponse</span>();</span><br><span class="line">            <span class="comment">//將答案填入訊息中</span></span><br><span class="line">            msg += item + <span class="string">&quot; ： &quot;</span> + response + <span class="string">&quot;\n\n&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">        <span class="comment">//測試 Token 可用</span></span><br><span class="line">        msg += <span class="string">&quot;No Answers for message.\n\n&quot;</span></span><br><span class="line">        <span class="comment">//異常時進行紀錄</span></span><br><span class="line">        <span class="title class_">Logger</span>.<span class="title function_">log</span>(err)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 發送LINE訊息</span></span><br><span class="line">  <span class="title function_">sendMessage</span>(channelAccessToken, msg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 發送LINE訊息</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sendMessage</span>(<span class="params">channelAccessToken, msg</span>) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> message = &#123;</span><br><span class="line">    <span class="string">&quot;to&quot;</span>: userId,</span><br><span class="line">    <span class="string">&quot;messages&quot;</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="string">&quot;type&quot;</span>: <span class="string">&quot;text&quot;</span>,</span><br><span class="line">        <span class="string">&quot;text&quot;</span>: msg</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 設定 HTTP 請求選項</span></span><br><span class="line">  <span class="keyword">let</span> options = &#123;</span><br><span class="line">    <span class="string">&quot;method&quot;</span>: <span class="string">&quot;post&quot;</span>,</span><br><span class="line">    <span class="string">&quot;contentType&quot;</span>: <span class="string">&quot;application/json&quot;</span>,</span><br><span class="line">    <span class="string">&quot;headers&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;Authorization&quot;</span>: <span class="string">&quot;Bearer &quot;</span> + channelAccessToken</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;payload&quot;</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(message)</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 發送 POST 請求到 LINE API</span></span><br><span class="line">  <span class="keyword">let</span> response = <span class="title class_">UrlFetchApp</span>.<span class="title function_">fetch</span>(<span class="string">&quot;https://api.line.me/v2/bot/message/push&quot;</span>, options);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 輸出結果（檢查回應）</span></span><br><span class="line">  <span class="title class_">Logger</span>.<span class="title function_">log</span>(response.<span class="title function_">getContentText</span>());</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`發送LINE通知~`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>記得也可以改一下，這個程式的標題喔！</p>
+<p>在下圖中，依序貼上那「兩個關鍵的LINE Developer Token」，在畫面中有他們該出現的位置：<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-16.png"
+                        alt="alt text"
+                 ></p>
+<p>接著，可以按下「Ctrl+S」or「Command+S」，或者下面圖片的「小磁碟」圖案，來儲存程式碼檔案：<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-17.png"
+                        alt="alt text"
+                 ></p>
+<h3 id="設定觸發條件"><a href="#設定觸發條件" class="headerlink" title="設定觸發條件"></a>設定觸發條件</h3><p>從左側邊欄位中，選擇「觸發條件」後，按下右下角的「+ 新增觸發按鈕」新增一個觸發事件：<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-19.png"
+                        alt="alt text"
+                 ></p>
+<p>請依照下面圖中的設定，將<strong>執行的功能</strong>設定為「onFormSubmit」;另外，將<strong>活動類型</strong>設定為「提交表單時」，按下儲存。</p>
+<ul>
+<li>這樣設定的結果，會在使用者提交表單時，會進行LINE Bot通知</li>
+</ul>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-20.png"
+                        alt="alt text"
+                 ></p>
+<h3 id="開放權限"><a href="#開放權限" class="headerlink" title="開放權限"></a>開放權限</h3><p>開放這個自動化App的權限設定：<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-21.png"
+                        alt="alt text"
+                 ><br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-24.png"
+                        alt="alt text"
+                 ></p>
+<p>設定完後，就會出現在畫面中囉！<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-23.png"
+                        alt="alt text"
+                 ></p>
+<h2 id="Step-3-表單與設置結果測試"><a href="#Step-3-表單與設置結果測試" class="headerlink" title="Step 3. 表單與設置結果測試"></a>Step 3. 表單與設置結果測試</h2><p>回到自己建立的表單畫面，按下「發佈」取得連結：<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-25.png"
+                        alt="alt text"
+                 ></p>
+<p>現在，可以填寫這份Google表單，填寫完成後，就會看到LINE Bot的訊息通知囉！<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-26.png"
+                        alt="alt text"
+                 ><br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-27.png"
+                        alt="alt text"
+                 ><br>可喜可賀！可喜可賀！</p>
+<p>在表單的Apps Scripts中的執行項目，也可以觀察到訊息紀錄，可以用來Debug:<br><img  
+                       lazyload
+                       alt="image"
+                       data-src="/line-message-and-google-form-notify/image-28.png"
+                        alt="alt text"
+                 ></p>
+<h2 id="小結論"><a href="#小結論" class="headerlink" title="小結論"></a>小結論</h2><p>截了一大堆圖片，哈哈。覺得這樣的流程是必須紀錄下來的，非常實用，但確實有些複雜。<br>程式碼可以依照自己的需求進行客製化調整。希望對大家有幫助。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><blockquote>
+<p>感謝以下的參考連結，受益良多，我也是從這些連結學得這個技能的！</p>
+</blockquote>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://home.gamer.com.tw/artwork.php?sn=6059401" >主題 Google自動化：表單收到回應LINE通知(Messaging API版)<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://youtu.be/Mw3cODdkaFM?si=TUDUYIXLzJm66aJv" >2小時初學LINE Bot-Messaging API<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+                </div>
+
+                
+                        
+<div class="post-copyright-info-container border-box">
+    <div class="copyright-info-content border-box">
+        <div class="copyright-info-top border-box">
+            <div class="copyright-post-title border-box text-ellipsis">
+                (多圖) LINE Message API自動化：Google Form表單收到通知（取代舊版LINE Notify）
+            </div>
+
+            <div class="copyright-post-link border-box text-ellipsis">
+                line-message-and-google-form-notify/
+            </div>
+        </div>
+
+        <div class="copyright-info-bottom border-box">
+            <div class="copyright-post-author bottom-item">
+                <div class="type">
+                    Author
+                </div>
+                <div class="content">Jimmy Shen</div>
+            </div>
+
+            <div class="post-time bottom-item">
+                <div class="type">
+                    Published
+                </div>
+                <div class="content">2025-05-25 18:27</div>
+            </div>
+
+
+            <div class="post-license bottom-item">
+                <div class="type">
+                    License
+                </div>
+                <div class="content tooltip" data-tooltip-content="CC BY-NC-SA 4.0">
+                    <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed">
+                        <i class="fa-brands fa-creative-commons"></i>
+                        <i class="fa-brands fa-creative-commons-by"></i>
+                        <i class="fa-brands fa-creative-commons-nc"></i>
+                        <i class="fa-brands fa-creative-commons-sa"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <i class="copyright-bg fa-solid fa-copyright"></i>
+    </div>
+    <div class="copy-copyright-info flex-center tooltip" data-tooltip-content="Copy copyright info" data-tooltip-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/auto-bot/">auto-bot</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/line-official-account/">line-official-account</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+                    <div class="reward-author-container border-box flex-center">
+    <div class="reward-btn keep-button border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="請我喝一杯讚的！"
+            data-tooltip-img-url="/images/givemeacoffee.png"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -8px;"
+    >
+        <i class="fa-solid fa-hand-holding-heart"></i>
+    </div>
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2024H2/20240706_Git-update-vs2022/"
+                                   title="Git 使用教學－如何在VS 2022將自己的程式碼，更新至主分支(by Github)"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Git 使用教學－如何在VS 2022將自己的程式碼，更新至主分支(by Github)</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">Comment plugin failed to load</span>
+    <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="disqus-comments-container">
+        <div id="disqus_thread"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.initDisqus) {
+            window.KeepCommentPlugin.initDisqus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = '//quanjun-space.disqus.com/embed.js'
+              script.setAttribute('data-timestamp', `${Date.now()}`)
+              document.querySelector('.disqus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initDisqus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initDisqus)
+          }
+        </script>
+        <script id="dsq-count-scr" src="//quanjun-space.disqus.com/count.js" async></script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%A7%E7%B6%B1"><span class="nav-text">大綱</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-1-%E5%BB%BA%E7%AB%8BLINE-Bot%E8%88%87%E7%94%B3%E8%AB%8BMessage-API"><span class="nav-text">Step 1. 建立LINE Bot與申請Message API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LINE-Developers%E5%85%A7%E7%9A%84%E6%93%8D%E4%BD%9C%E8%88%87%E5%BB%BA%E7%BD%AE"><span class="nav-text">LINE Developers內的操作與建置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LINE-Bot-Message-API%E5%95%9F%E7%94%A8"><span class="nav-text">LINE Bot Message API啟用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LINE-Bot-%E6%A9%9F%E5%99%A8%E4%BA%BA%E7%B4%B0%E7%AF%80%E8%A8%AD%E5%AE%9A"><span class="nav-text">LINE Bot 機器人細節設定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A9%E5%80%8B%E9%97%9C%E9%8D%B5%E7%9A%84LINE-Developer-Token-User-ID-Access-Token"><span class="nav-text">兩個關鍵的LINE Developer Token - User ID &amp; Access Token</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-2-%E5%89%B5%E7%AB%8BGoogle-Form%E8%88%87%E5%AF%AB%E8%87%AA%E5%8B%95%E5%8C%96%E6%8F%90%E7%A4%BAGoogle-Apps-Script"><span class="nav-text">Step 2. 創立Google Form與寫自動化提示Google Apps Script</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%AD%E5%AE%9A%E8%A7%B8%E7%99%BC%E6%A2%9D%E4%BB%B6"><span class="nav-text">設定觸發條件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%96%8B%E6%94%BE%E6%AC%8A%E9%99%90"><span class="nav-text">開放權限</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-3-%E8%A1%A8%E5%96%AE%E8%88%87%E8%A8%AD%E7%BD%AE%E7%B5%90%E6%9E%9C%E6%B8%AC%E8%A9%A6"><span class="nav-text">Step 3. 表單與設置結果測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90%E8%AB%96"><span class="nav-text">小結論</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2023</span>&nbsp;-&nbsp;2025
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Jimmy Shen</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+                
+                <div class="deploy-info info-item default">
+                    
+                        This site is deployed on <span class="tooltip" data-tooltip-content="Netlify"><img src="/images/deploy-provider/netlify.png"></span>
+                    
+                </div>
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+                <span class="count-box border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-box border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%A7%E7%B6%B1"><span class="nav-text">大綱</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-1-%E5%BB%BA%E7%AB%8BLINE-Bot%E8%88%87%E7%94%B3%E8%AB%8BMessage-API"><span class="nav-text">Step 1. 建立LINE Bot與申請Message API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LINE-Developers%E5%85%A7%E7%9A%84%E6%93%8D%E4%BD%9C%E8%88%87%E5%BB%BA%E7%BD%AE"><span class="nav-text">LINE Developers內的操作與建置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LINE-Bot-Message-API%E5%95%9F%E7%94%A8"><span class="nav-text">LINE Bot Message API啟用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LINE-Bot-%E6%A9%9F%E5%99%A8%E4%BA%BA%E7%B4%B0%E7%AF%80%E8%A8%AD%E5%AE%9A"><span class="nav-text">LINE Bot 機器人細節設定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A9%E5%80%8B%E9%97%9C%E9%8D%B5%E7%9A%84LINE-Developer-Token-User-ID-Access-Token"><span class="nav-text">兩個關鍵的LINE Developer Token - User ID &amp; Access Token</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-2-%E5%89%B5%E7%AB%8BGoogle-Form%E8%88%87%E5%AF%AB%E8%87%AA%E5%8B%95%E5%8C%96%E6%8F%90%E7%A4%BAGoogle-Apps-Script"><span class="nav-text">Step 2. 創立Google Form與寫自動化提示Google Apps Script</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%AD%E5%AE%9A%E8%A7%B8%E7%99%BC%E6%A2%9D%E4%BB%B6"><span class="nav-text">設定觸發條件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%96%8B%E6%94%BE%E6%AC%8A%E9%99%90"><span class="nav-text">開放權限</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-3-%E8%A1%A8%E5%96%AE%E8%88%87%E8%A8%AD%E7%BD%AE%E7%B5%90%E6%9E%9C%E6%B8%AC%E8%A9%A6"><span class="nav-text">Step 3. 表單與設置結果測試</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%B5%90%E8%AB%96"><span class="nav-text">小結論</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+            
+<script src="/js/post/copyright-info.js"></script>
+
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>

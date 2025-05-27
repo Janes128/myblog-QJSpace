@@ -35,7 +35,7 @@
     <script class="keep-theme-configurations">
     const KEEP = window.KEEP || {}
     KEEP.hexo_config = {"hostname":"janes128.github.io","root":"/","language":"en","path":"search.json"}
-    KEEP.theme_config = {"base_info":{"primary_color":"#669966","title":"Quan-Jun Space","author":"Jimmy Shen","avatar":"/images/Jimmy.png","logo":"/images/QJ_Logo.svg","favicon":"/images/QJ_Icon.svg"},"menu":{"Archives":"/archives","Tags":"/tags","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.png","background_img_dark":"/images/night-bg.png","description":"Never lose your value, have a life, and live it with your pride.","hitokoto":false,"social_contact":{"enable":true,"links":{"github":"https://github.com/Janes128","twitter":null,"facebook":null,"email":"jimmy851208@gmail.com"}}},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":false},"home":{"category":true,"tag":true,"announcement":null},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":true,"share":false,"reward":{"enable":true,"img_link":"/images/givemeacoffee.png","text":"請我喝一杯讚的！"}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"disqus","disqus":{"enable":true,"shortname":"quanjun-space","count":true}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2023,"word_count":false,"icp":{"enable":false,"record_code":null,"url":null},"site_deploy":{"enable":true,"provider":"netlify","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","version":"4.0.7"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#669966","title":"Quan-Jun Space","author":"Jimmy Shen","avatar":"/images/Jimmy.png","logo":"/images/QJ_Logo.svg","favicon":"/images/QJ_Icon.svg"},"menu":{"Archives":"/archives","Tags":"/tags","Categories":"/categories","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.png","background_img_dark":"/images/night-bg.png","description":"Never lose your value, have a life, and live it with your pride.","hitokoto":false,"social_contact":{"enable":true,"links":{"github":"https://github.com/Janes128","twitter":null,"facebook":null,"email":"jimmy851208@gmail.com"}}},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":false},"home":{"category":true,"tag":true,"announcement":null},"post":{"author_badge":{"enable":false,"level_badge":false,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":true,"share":false,"reward":{"enable":true,"img_link":"/images/givemeacoffee.png","text":"請我喝一杯讚的！"}},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":true,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":true,"use":"disqus","disqus":{"enable":true,"shortname":"quanjun-space","count":true}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2023,"word_count":false,"icp":{"enable":false,"record_code":null,"url":null},"site_deploy":{"enable":true,"provider":"netlify","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","version":"4.0.7"}
     KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
     KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
     KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
@@ -98,6 +98,12 @@
                         </li>
                     
                         <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >CATEGORIES</a>
+                        </li>
+                    
+                        <li class="menu-item">
                             <a class="active"
                                href="/about"
                             >ABOUT</a>
@@ -142,6 +148,12 @@
                 </li>
             
                 <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories"
+                    >CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
                     <a class="active"
                        href="/about"
                     >ABOUT</a>
@@ -172,11 +184,90 @@
             
             <div class="page-content border-box keep-markdown-body">
                 
-                    <h2 id="About-me"><a href="#About-me" class="headerlink" title="About me"></a>About me</h2><p>我是詮鈞，可以叫我 Jimmy。一個想把程式語言當文章寫的軟體工程師，享受在知識探索與分享的過程中。<br>本站將分享自己在工作學習中的收穫筆記；還有生活DIY心得、知識分享等等。他們是我的生活軌跡。<br>人生，就是不斷的在探索學習，朝向美好的自己邁進。</p>
+                    <h2 id="About-me"><a href="#About-me" class="headerlink" title="About me"></a>About me</h2><p>我是Jimmy。<br>一個想把程式語言當文章寫的軟體工程師，享受在知識探索與分享的過程中。<br>本站將分享自己在工作學習中的收穫筆記；還有生活DIY心得、知識分享等等。他們是我的生活軌跡。<br>人生，就是不斷的在探索學習，朝向美好的自己邁進。</p>
 <p>期許，今天的自己都要比昨天的自己還進步一點！</p>
+<ul>
+<li>Current Job: AI Application Engineer</li>
+<li>Major Langugage: Python, C++&#x2F;C</li>
+</ul>
 
                 
             </div>
+
+            
+                
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;Comments
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">Comment plugin failed to load</span>
+    <button class="reload keep-button">Click to reload</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">Loading comment plugin</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="disqus-comments-container">
+        <div id="disqus_thread"></div>
+        <script 
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          if (!window.KeepCommentPlugin?.initDisqus) {
+            window.KeepCommentPlugin.initDisqus = () => {
+              const script = document.createElement('script')
+              script.async = true
+              script.src = '//quanjun-space.disqus.com/embed.js'
+              script.setAttribute('data-timestamp', `${Date.now()}`)
+              document.querySelector('.disqus-comments-container').appendChild(script)
+              script.onerror = () => {
+                window.KeepCommentPlugin.loadFailHandle()
+              }
+              script.onload = () => {
+                window.KeepCommentPlugin.hideLoading()
+              }
+            }
+          }
+
+          if ('false' === "true") {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initDisqus()
+            }, 1000)
+          } else {
+            window.addEventListener("DOMContentLoaded", window.KeepCommentPlugin.initDisqus)
+          }
+        </script>
+        <script id="dsq-count-scr" src="//quanjun-space.disqus.com/count.js" async></script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
 
             
         </div>
@@ -195,7 +286,7 @@
     <div class="border-box website-info-box default">
         
             <div class="copyright-info info-item default">
-                &copy;&nbsp;<span>2023</span>&nbsp;-&nbsp;2024
+                &copy;&nbsp;<span>2023</span>&nbsp;-&nbsp;2025
                 
                     &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Jimmy Shen</a>
                 
